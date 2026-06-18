@@ -1,0 +1,50 @@
+<!-- SEARCH BAR -->
+<div class="search-toolbar">
+    <div class="container">
+        <div class="search-filter-box">
+            <input type="text" class="search-field" placeholder="🔍 Search treks..." [(ngModel)]="searchText"
+                (input)="applySearch()">
+            <button class="search-btn" (click)="applySearch()">
+                Search
+            </button>
+        </div>
+    </div>
+</div>
+<!-- RESULTS SECTION -->
+<div class="results-section">
+    <div class="container">
+        <!-- NO RESULT -->
+        <div class="no-result" *ngIf="filteredEvents.length === 0">
+            <h4>No Treks Found</h4>
+            <button class="btn btn-success mt-3" routerLink="/">
+                Back To Home
+            </button>
+        </div>
+        <!-- TREK LIST -->
+        <div class="row">
+            <!-- <div class="col-lg-4 col-md-6 mb-4" *ngFor="let event of filteredEvents"> -->
+            <div class="col-xl-3 col-lg-3 col-md-6 mb-4" *ngFor="let event of filteredEvents">
+
+            <div class="trek-card">
+                <div class="trek-image">
+                    <img [src]="event.images || '/assets/images/default-trek.jpg'">
+                    <div class="difficulty-badge">
+                        {{event.difficulty}}
+                    </div>
+                </div>
+                <div class="trek-body">
+                    <h4>
+                        {{event.eventname}}
+                    </h4>
+                    <p>
+                        {{event.attraction}}
+                    </p>
+                    <button class="btn book-btn" [routerLink]="['/trek-details', event.eventname]">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

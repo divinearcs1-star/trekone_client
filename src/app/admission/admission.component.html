@@ -1,0 +1,134 @@
+<div class="registration-page">
+    <div class="registration-card">
+        <div class="header-section">
+            <div class="header-icon">🏔️</div>
+            <h1>Trek Registration</h1>
+            <p> {{eventname}} </p>
+        </div>
+        <form [formGroup]="MForm" (ngSubmit)="onSubmit()">
+            <!-- Personal Information -->
+            <div class="section-title">
+                Personal Information
+            </div>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label appAstrict>Full Name</label>
+                    <input [class.is-invalid]="MForm.get('fname')?.invalid && MForm.get('fname')?.touched" type="text"
+                        class="form-control" placeholder="Enter full name" formControlName="fname">
+                    <small [class.d-none]="MForm.get('fname')?.valid || MForm.get('fname')?.untouched"
+                        class="text-danger"> Name required
+                    </small>
+                </div>
+                <div class="form-field">
+                    <label appAstrict>Mobile Number</label>
+                    <input [class.is-invalid]="MForm.get('phone')?.invalid && MForm.get('phone')?.touched" type="text"
+                        class="form-control" formControlName="phone">
+                    <small [class.d-none]="MForm.get('phone')?.valid || MForm.get('phone')?.untouched"
+                        class="text-danger">
+                        Invalid Mobile No
+                    </small>
+                </div>
+                <div class="form-field">
+                    <label appAstrict>Email Address</label>
+                    <input [class.is-invalid]="MForm.get('email')?.invalid && MForm.get('email')?.touched" type="text"
+                        class="form-control" formControlName="email">
+                    <small [class.d-none]="MForm.get('email')?.valid || MForm.get('email')?.untouched"
+                        class="text-danger">
+                        Invalid email
+                    </small>
+                </div>
+                <div class="form-field">
+                    <label appAstrict>Emergency Mobile</label>
+                    <input [class.is-invalid]="MForm.get('phone2')?.invalid && MForm.get('phone2')?.touched" type="text"
+                        class="form-control" formControlName="phone2">
+                    <small [class.d-none]="MForm.get('phone2')?.valid || MForm.get('phone2')?.untouched"
+                        class="text-danger"> Invalid Mobile No
+                    </small>
+                </div>
+                <div class="form-field">
+                    <label appAstrict>City</label>
+                    <input [class.is-invalid]="MForm.get('city')?.invalid && MForm.get('city')?.touched" type="text"
+                        class="form-control" formControlName="city">
+                    <small [class.d-none]="MForm.get('city')?.valid || MForm.get('city')?.untouched"
+                        class="text-danger"> City is required
+                    </small>
+                </div>
+            </div>
+            <!-- Booking Details -->
+            <div class="section-title">
+                Booking Details
+            </div>
+            <div class="booking-grid">
+                <div class="form-field pickloc">
+                    <label appAstrict>Pickup Location</label>
+                    <input
+                        [class.is-invalid]="MForm.get('pickuplocation')?.invalid && MForm.get('pickuplocation')?.touched"
+                        type="text" class="form-control" formControlName="pickuplocation">
+                    <small [class.d-none]="MForm.get('pickuplocation')?.valid || MForm.get('pickuplocation')?.untouched"
+                        class="text-danger">
+                        Invalid location
+                    </small>
+                </div>
+                <div class="form-field">
+                    <label appAstrict>Trek Date</label>
+                    <input type="date" class="form-control" [min]="today" formControlName="trekdate">
+                    <div class="text-danger" *ngIf="MForm.get('trekdate')?.hasError('required') && (MForm.get('trekdate')?.dirty || 
+                    MForm.get('trekdate')?.touched)">
+                        Trek Date is required
+                    </div>
+                </div>
+                <div class="person-box">
+                    <label appAstrict>No. of Persons</label>
+                    <div class="person-counter">
+                        <button type="button" class="counter-btn" (click)="decreasePerson()"> −
+                        </button>
+                        <input type="text" readonly class="person-input" formControlName="noofperson">
+                        <button type="button" class="counter-btn" (click)="increasePerson()"> +
+                        </button>
+                    </div>
+                    <div class="text-danger mt-2" *ngIf="MForm.get('noofperson')?.hasError('required')">
+                        Select no of persons
+                    </div>
+                </div>
+                <div class="amount-box">
+                    <label>Total Amount</label>
+                    <input readonly type="text" class="form-control amount-field" formControlName="amount">
+                </div>
+            </div>
+            <!-- Address -->
+            <div class="section-title">
+                Address
+            </div>
+            <div class="form-field">
+                <label appAstrict>Residential Address</label>
+                <textarea [class.is-invalid]="MForm.get('address')?.invalid && MForm.get('address')?.touched" rows="3"
+                    class="form-control" formControlName="address">
+                </textarea>
+                <small [class.d-none]="MForm.get('address')?.valid || MForm.get('address')?.untouched"
+                    class="text-danger">
+                    Fill the address
+                </small>
+            </div>
+            <!-- Terms -->
+            <div class="terms-card">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" formControlName="terms">
+                    <label class="form-check-label"> I have read and agree to the
+                        <a href="/terms-and-conditions">
+                            Terms & Conditions, Privacy Policy & Disclaimer
+                        </a>
+                    </label>
+                </div>
+                <small class="text-danger" *ngIf="MForm.get('terms')?.invalid && MForm.get('terms')?.touched">
+                    Please accept Terms & Conditions
+                </small>
+            </div>
+            <!-- Submit -->
+            <div class="action-section">
+                <button type="submit" class="payment-btn" [disabled]="!MForm.valid" (click)="setData()"> REVIEW &
+                    PAYMENT →
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

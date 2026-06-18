@@ -1,10 +1,46 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EventsComponent } from './events/events.component';
+import { SpecialEventsComponent } from './special-events/special-events.component';
+import { authGuard } from './auth.guard';
+import { LoginComponent } from './login/login.component';
+import { AdmissionComponent } from './admission/admission.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { GreetingComponent } from './greeting/greeting.component';
+import { RegisterComponent } from './register/register.component';
+import { TermsComponent } from './terms/terms.component';
+import { ReviewComponent } from './review/review.component';
+import { HomeComponent } from './home/home.component';
+import { TrekDetailsComponent } from './trek-details/trek-details.component';
+import { SearchTreksComponent } from './search-treks/search-treks.component';
+import { PremiumDetailsComponent } from './premium-details/premium-details.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  //  {path : '', redirectTo:'events', pathMatch:'full'},
+  { path: '', component: HomeComponent },
+  { path: 'events', component: EventsComponent },
+  {
+    path: 'special',
+    canActivate: [authGuard],
+    component: SpecialEventsComponent
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'admission/:name/:fees', component: AdmissionComponent },
+  { path: 'greeting', component: GreetingComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'trek-details/:eventname', component: TrekDetailsComponent },
+  { path: 'premium-details/:eventname', component: PremiumDetailsComponent },
+  { path: 'review', component: ReviewComponent },
+  { path: 'search-treks', component: SearchTreksComponent },
+  { path: 'terms-and-conditions', component: TermsComponent },
+  { path: '**', component: PagenotfoundComponent }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'top',
+    anchorScrolling: 'enabled'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

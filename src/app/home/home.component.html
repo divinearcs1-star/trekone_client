@@ -1,0 +1,322 @@
+<!-- <h1>{{happyTrekkers}}</h1> -->
+<div class="hero-section">
+    <div class="hero-overlay">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Explore Maharashtra's
+                    <span>Most Exciting Treks</span>
+                </h1>
+                <p class="hero-subtitle">
+                    One Journey, Endless Adventures.
+                </p>
+                <p class="hero-description">
+                    Join TrekOne Adventures for unforgettable mountain
+                    experiences, night treks, forts, waterfalls,
+                    camping and family events.
+                </p>
+                <!-- Search -->
+                <div class="search-wrapper">
+                    <div class="search-box">
+                        <input type="text" class="form-control search-input"
+                            placeholder="Search Treks, Forts, Camping..." [(ngModel)]="searchText"
+                            (input)="filterTreks()" (keydown.escape)="clearSearch()">
+                        <!-- <span *ngIf="searchText" class="clear-btn" (click)="clearSearch()">
+                            ✕
+                        </span> -->
+                        <button class="btn explore-btn" (click)="exploreTreks('blank')">
+                            Explore Treks
+                        </button>
+                    </div>
+                    <!-- Search Suggestions -->
+                    <div class="search-dropdown" *ngIf="searchText.trim()">
+                        <div *ngFor="let trek of filteredEvents | slice:0:5" class="search-card"
+                            (click)="openTrek(trek)">
+                            <div>
+                                <h6>
+                                    🏔️ {{trek.eventname}}
+                                </h6>
+                                <small>
+                                    {{trek.difficulty}}
+                                    •
+                                    ₹{{trek.fees}}
+                                </small>
+                            </div>
+                            <span>
+                                →
+                            </span>
+                        </div>
+                        <div *ngIf="filteredEvents.length === 0" class="no-result">
+                            No treks found
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- UPCOMING TREKS -->
+<div id="upcoming" class="category-wrapper">
+    <button class="category-btn" (click)="exploreTreks('Night')">
+        Night Treks
+    </button>
+    <button class="category-btn" (click)="exploreTreks('Monsoon')">
+        Monsoon Treks
+    </button>
+    <button class="category-btn" (click)="exploreTreks('Family')">
+        Family Events
+    </button>
+    <button class="category-btn" (click)="exploreTreks('Camping')">
+        Camping
+    </button>
+</div>
+<section class="trek-section">
+    <div class="container-fluid px-5 ">
+        <div class="section-header">
+            <h2>Upcoming Adventures</h2>
+            <p>
+                Discover our upcoming treks and reserve your seat today.
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-6 mb-4" *ngFor="let event of filteredEvents">
+                <div class="trek-card">
+                    <div class="trek-image">
+                        <img [src]="event.images || '/assets/images/default-trek.jpg'" alt="">
+                        <div class="difficulty-badge">
+                            {{event.difficulty}}
+                        </div>
+                    </div>
+                    <div class="trek-body">
+                        <h4>
+                            {{event.eventname}}
+                        </h4>
+                        <div class="trek-info">
+                            <span>
+                                📅
+                                {{event.eventdate | date:'dd MMM yyyy'}}
+                            </span>
+                            <span>
+                                ⏱️
+                                {{event.duration}}
+                            </span>
+                        </div>
+                        <div class="trek-info">
+                            <span>
+                                📍
+                                {{event.trekfrom}}
+                            </span>
+                        </div>
+                        <div class="trek-footer">
+                            <div class="price">
+                                ₹ {{event.fees}}
+                            </div>
+                            <div class="seats">
+                                {{event.availableSeats}}
+                                Seats Left
+                            </div>
+                            <span *ngIf="event.availableSeats <= 10" class="text-danger fw-bold">
+                                Only Few Seats Left
+                            </span>
+                        </div>
+                        <button class="btn book-btn" [routerLink]="['/trek-details', event.eventname]">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- COUNT DOWN  -->
+<div class="countdown-box">
+    <h5>
+        Next Trek Starts In
+    </h5>
+    <div class="countdown">
+        {{days}}d
+        {{hours}}h
+        {{minutes}}m
+    </div>
+</div>
+<!-- WHY TREKONE -->
+<section class="why-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Choose TrekOne?</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        🛡️
+                    </div>
+                    <h4>Safety First</h4>
+                    <p>
+                        Experienced trek leaders,
+                        first aid support and proper planning.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        ⛰️
+                    </div>
+                    <h4>Expert Trek Leaders</h4>
+                    <p>
+                        Guided adventures for beginners
+                        and experienced trekkers.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        📸
+                    </div>
+                    <h4>Memorable Experiences</h4>
+                    <p>
+                        Capture beautiful moments
+                        with fellow adventurers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- GALLERY -->
+<div id="gallery" class="gallery-strip">
+    <div class="header">
+        <h2>📸 Trek Gallery</h2>
+    </div>
+    <div class="carousel">
+        <button class="nav left" (click)="prev()">❮</button>
+        <button class="nav right" (click)="nextt()">❯</button>
+        <div class="track" [style.transform]="'translateX(-' + currentIndex * (100 / visibleCount) + '%)'">
+            <div class="card" *ngFor="let img of galleryImages">
+                <img [src]="img" alt="trek image" />
+            </div>
+        </div>
+    </div>
+</div>
+<!-- REVIEWS -->
+<section class="review-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>What Trekkers Say</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4" *ngFor="let review of reviews">
+                <div class="review-card">
+                    <div class="stars">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                    <p>
+                        "{{review.message}}"
+                    </p>
+                    <h5>
+                        {{review.name}}
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- STATS -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <h2>{{treksCompleted}}+</h2>
+                    <p>Treks Completed</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <h2>{{happyTrekkers}}+</h2>
+                    <p>Happy Trekkers</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <h2>{{destinations}}+</h2>
+                    <p>Destinations</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="stat-card">
+                    <h2>{{customerRating}} ★</h2>
+                    <p>Customer Rating</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container text-center">
+        <h2>
+            Ready For Your Next Adventure?
+        </h2>
+        <p>
+            Join TrekOne Adventures and explore
+            the beauty of Maharashtra.
+        </p>
+        <a class="btn cta-btn" (click)="exploreTreks('blank')">
+            View Upcoming Treks
+        </a>
+    </div>
+</section>
+<!-- FOOTER  anchor scrolling added-->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <h3>TrekOne Adventures</h3>
+                <p>
+                    One Journey, Endless Adventures.
+                </p>
+            </div>
+            <div class="col-lg-2">
+                <h5>Explore</h5>
+                <ul>
+                    <li>
+                        <a [routerLink]="['/']" fragment="upcoming"> Upcoming Treks </a>
+                    </li>  
+                    <li>
+                        <a [routerLink]="['/']" (click)="exploreTreks('Family')"> Family Events </a>
+                    </li>
+                    <li>
+                        <!-- <button (click)="scrollTo('gallery')"> Gallery </button> -->
+                        <a [routerLink]="['/']" fragment="gallery"> Gallery </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <h5>Contact</h5>
+                <p>📞 8877665544</p>
+                <p>📍 Pune, Maharashtra</p>
+            </div>
+            <div class="col-lg-3">
+                <h5>Follow Us</h5>
+                <p> <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer">Instagram</a> </p>
+                <p> <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer">Facebook</a> </p>
+                <p> <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a> </p>
+            </div>
+        </div>
+        <hr>
+        <div class="text-center">
+            © 2026 TrekOne Adventures.
+            All Rights Reserved.
+        </div>
+    </div>
+</footer>
+<!-- WHATSAPP -->
+<a href="https://wa.me/918793004502" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+    <span class="tooltip-text">
+        Chat With Us
+    </span>
+    <img src="/assets/images/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>

@@ -1,0 +1,85 @@
+.trek-section {
+    background: #f8fafc;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.trek-card {
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+    transition: .35s;
+    height: 100%;
+}
+.trek-card:hover {
+    transform: translateY(-8px);
+}
+.trek-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+.trek-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .4s;
+}
+.trek-card:hover img {
+    transform: scale(1.08);
+}
+.difficulty-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0,0,0,.75);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: .85rem;
+}
+.trek-body {
+    padding: 15px;
+}
+.trek-body h4 {
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.trek-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #6b7280;
+    font-size: .95rem;
+}
+.trek-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 18px 0;
+}
+.price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #198754;
+}
+.seats {
+    color: #ef4444;
+    font-weight: 600;
+}
+.book-btn {
+    width: 100%;
+    border-radius: 50px;
+    background: linear-gradient(
+        135deg,
+        #198754,
+        #20c997
+    );
+    border: none;
+    color: white;
+    padding: 12px;
+}
+.book-btn:hover {
+    color: white;
+}

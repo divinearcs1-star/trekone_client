@@ -1,0 +1,59 @@
+<div class="review-container">
+    <h2 class="main-title">Review & Payment</h2>
+    <!-- Review Booking -->
+    <div class="card-box">
+        <h4>Review Your Booking</h4>
+        <div class="info-row">
+            <span>Trek Name</span>
+            <strong>{{bookingData.eventname}}</strong>
+        </div>
+        <div class="info-row">
+            <span>Trek Date</span>
+            <strong>{{bookingData.eventdate}}</strong>
+        </div>
+        <div class="info-row">
+            <span>No. of Persons</span>
+            <strong>{{bookingData.noofpersons}}</strong>
+        </div>
+        <div class="info-row">
+            <span>Booking Name</span>
+            <strong>{{bookingData.customername}}</strong>
+        </div>
+        <div class="info-row">
+            <span>Email</span>
+            <strong>{{bookingData.email}}</strong>
+        </div>
+        <div class="info-row">
+            <span>Mobile</span>
+            <strong>{{bookingData.mobile}}</strong>
+        </div>
+    </div>
+    <!-- Payment Details -->
+    <div class="card-box">
+        <h4>Payment Details</h4>
+        <div class="info-row">
+            <span>Fee Per Person</span>
+            <strong>₹{{bookingData.eventfee}}</strong>
+        </div>
+        <div class="info-row total">
+            <span>Total Amount</span>
+            <strong>₹{{bookingData.amount}}</strong>
+        </div>
+    </div>
+    <!-- Payment Options -->
+    <div class="card-box">
+        <h4>Payment Options</h4>
+        <div class="payment-row">
+            <span>
+                💳 Pay via Indian Credit Card / Debit Card / Net Banking / UPI
+            </span>
+            <strong class="razorpay-text">
+                Razorpay
+            </strong>
+        </div>
+    </div>
+    <!-- Payment Button -->
+    <button class="pay-btn" (click)="payment()">
+        Proceed to Payment
+    </button>
+</div>

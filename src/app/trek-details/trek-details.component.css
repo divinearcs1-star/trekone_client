@@ -1,0 +1,185 @@
+.hero-banner{
+    position:relative;
+    height:500px;
+}
+
+.banner-image{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.banner-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    display:flex;
+    align-items:center;
+}
+
+.banner-overlay h1{
+    color:white;
+    font-size:3rem;
+    font-weight:800;
+}
+
+.banner-overlay p{
+    color:white;
+    font-size:1.2rem;
+}
+
+.badge-premium{
+    background:hsl(325, 86%, 60%);
+    color:white;
+    padding:10px 18px;
+    border-radius:30px;
+}
+
+.premium-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+}
+
+.attractionmatch{
+    margin-bottom: 5px;
+}
+.includematch{
+    margin-bottom: 3px;
+}
+.thingsmatch{
+    margin-bottom: 4px;
+}
+
+.timeline-item{
+    padding:15px;
+    border-left:4px solid #198754;
+    margin-bottom:15px;
+    background:#f8fafc;
+}
+
+.booking-card{
+    position:sticky;
+    top:100px;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+}
+
+.price{
+    font-size:2rem;
+    font-weight:800;
+    color:#198754;
+    margin:20px 0;
+}
+.containerperson {
+    display: flex;
+    gap: 15px;
+    margin-top: -20px;
+}
+.persondata{
+    margin-top: 30px;
+    font-size: large;
+}
+
+.book-btn{
+    width:100%;
+    background:#198754;
+    color:white;
+    border:none;
+    border-radius:30px;
+    padding:12px;
+}
+
+.trust-box{
+    margin-top:20px;
+    font-size:.95rem;
+    color:#6b7280;
+}
+
+/*  ==================
+   sliding changes 
+   =================  */
+@media(max-width:768px){
+
+.hero-banner{
+    height:300px;
+}
+
+.banner-overlay h1{
+    font-size:2rem;
+}
+
+.booking-card{
+    position:static;
+}
+
+}
+/* .hero-slide {
+  width: 100%;
+  height: 500px;
+  background-size: cover !important;
+  background-position: center !important;
+  border: 5px solid red;
+} */
+
+.trek-hero {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.hero-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    animation: zoomAnimation 5s linear infinite;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: linear-gradient(
+        rgba(0,0,0,.2),
+        rgba(0,0,0,.7)
+    );
+}
+
+.hero-content {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    z-index: 10;
+    color: white;
+}
+
+.hero-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    display: flex;
+    gap: 10px;
+}
+.containercls{
+     display: flex;
+    align-items: center;      /* Vertical center */
+    justify-content: center;
+}

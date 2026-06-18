@@ -146,14 +146,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       GALLERY (OPTIONAL)
   ========================== */
   galleryImages = [
-    '/assets/images/group/gp1.jpg',
-    'assets/images/group/gp2.jpg',
-    'assets/images/group/gp3.jpg',
-    'assets/images/group/gp4.jpg',
-    'assets/images/group/gp5.jpg',
-    'assets/images/group/gp6.jpg',
-    'assets/images/group/gp7.jpg',
-    'assets/images/group/gp8.jpg'
+    '/assets/images/group/gp1.webp',
+    'assets/images/group/gp2.webp',
+    'assets/images/group/gp3.webp',
+    'assets/images/group/gp4.webp',
+    'assets/images/group/gp5.webp',
+    'assets/images/group/gp6.webp',
+    'assets/images/group/gp7.webp',
+    'assets/images/group/gp8.webp'
   ];
   startCounters() {
     this.animateValue('treksCompleted', 150, 4);

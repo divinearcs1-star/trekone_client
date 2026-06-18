@@ -5,7 +5,7 @@
             rgba(0,0,0,.55),
             rgba(0,0,0,.55)
         ),
-        url('/assets/images/hero.jpg');
+        url('/assets/images/hero.webp');
     background-size: cover;
     background-position: center;
     display: flex;

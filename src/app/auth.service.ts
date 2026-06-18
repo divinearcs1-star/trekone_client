@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+ import { environment } from '../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +11,9 @@ export class AuthService {
 
   dbname = "UserAdmin"
   collectionname = "Users"
-  loginUrl = 'http://localhost:3000/api/login/' + this.dbname + '/' + this.collectionname
-  registerUrl = 'http://localhost:3000/api/register'
-
+  loginUrl = `${environment.apiUrl}` + '/login/' + this.dbname + '/' + this.collectionname
+  registerUrl = `${environment.apiUrl}` + '/register'
+  
   constructor(private http: HttpClient, private router: Router) {
   }
 

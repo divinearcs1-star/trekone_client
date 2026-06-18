@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +11,8 @@ export class BookingService {
   dbname = "Trekways"
   collectionname = "Bookings"
 
-  bookingUrl = 'http://localhost:3000/api/booking/' + this.dbname + '/' + this.collectionname
-  verifypaymentUrl = 'http://localhost:3000/api/verifypayment/' + this.dbname + '/' + this.collectionname
+  bookingUrl = `${environment.apiUrl}` + '/booking/' + this.dbname + '/' + this.collectionname
+  verifypaymentUrl = `${environment.apiUrl}` + '/verifypayment/' + this.dbname + '/' + this.collectionname
 
   constructor(private http: HttpClient) {
   }

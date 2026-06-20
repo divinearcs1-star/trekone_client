@@ -1,57 +1,64 @@
 <div class="confirmation-container">
-  <div class="confirmation-card">
-    <div class="success-icon">
-      ✅
+  <div  class="confirmation-card ">
+    <div id="receipt-content">
+      <div class="success-icon">
+        ✅
+      </div>
+      <h2>Booking Confirmed!</h2>
+      <p class="success-msg">
+        Thank you for booking with <strong>TrekOne Adventures</strong>.
+      </p>
+      <hr>
+      <div class="booking-details">
+        <div class="detail-row">
+          <span>Booking ID</span>
+          <strong>{{bookingData.bookingid}}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Customer Name</span>
+          <strong>{{bookingData.customername}}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Mobile</span>
+          <strong>{{bookingData.mobile}}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Email</span>
+          <strong>{{bookingData.email}}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Trek Name</span>
+          <strong>{{bookingData.eventname}}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Trek Date</span>
+          <strong>{{bookingData.eventdate | date:'dd MMM yyyy'}}</strong>
+        </div>
+        <div class="detail-row">
+          <span>No. of Persons</span>
+          <strong>{{bookingData.noofpersons}}</strong>
+        </div>
+        <div class="detail-row">
+          <span>Pick-up Point</span>
+          <strong>{{bookingData.pickuplocation}}</strong>
+        </div>
+        <div class="detail-row amount">
+          <span>Total Amount Paid</span>
+          <strong>₹ {{bookingData.amount}}</strong>
+        </div>
+      </div>
+      <hr>
+      <div class="note">
+        Please carry a valid ID proof and reach the pickup location on time.
+      </div>
     </div>
-    <h2>Booking Confirmed!</h2>
-    <p class="success-msg">
-      Thank you for booking with <strong>TrekOne Adventures</strong>.
-    </p>
-    <hr>
-    <div class="booking-details">
-      <div class="detail-row">
-        <span>Booking ID</span>
-        <strong>{{bookingData.bookingid}}</strong>
-      </div>
-      <div class="detail-row">
-        <span>Customer Name</span>
-        <strong>{{bookingData.customername}}</strong>
-      </div>
-      <div class="detail-row">
-        <span>Mobile</span>
-        <strong>{{bookingData.mobile}}</strong>
-      </div>
-      <div class="detail-row">
-        <span>Email</span>
-        <strong>{{bookingData.email}}</strong>
-      </div>
-      <div class="detail-row">
-        <span>Trek Name</span>
-        <strong>{{bookingData.eventname}}</strong>
-      </div>
-      <div class="detail-row">
-        <span>Trek Date</span>
-        <strong>{{bookingData.eventdate | date:'dd MMM yyyy'}}</strong>
-      </div>
-      <div class="detail-row">
-        <span>No. of Persons</span>
-        <strong>{{bookingData.noofpersons}}</strong>
-      </div>
-      <div class="detail-row">
-        <span>Pick-up Point</span>
-        <strong>{{bookingData.pickuplocation}}</strong>
-      </div>
-      <div class="detail-row amount">
-        <span>Total Amount Paid</span>
-        <strong>₹ {{bookingData.amount}}</strong>
-      </div>
+    <div class="container back">
+      <button class="home-btn" routerLink="/">
+        Back to Home
+      </button>
+      <button class="down-btn" (click)="downloadReceipt()">
+        Download Receipt
+      </button>
     </div>
-    <hr>
-    <div class="note">
-      Please carry a valid ID proof and reach the pickup location on time.
-    </div>
-    <button class="home-btn" routerLink="/">
-      Back to Home
-    </button>
   </div>
 </div>

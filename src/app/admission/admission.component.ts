@@ -15,7 +15,10 @@ export class AdmissionComponent implements OnInit {
   submitted = false;
   eventname = ""
   fees = ""
+  eventdatearray: string []=[]
+  pickuparray: string []=[]
   bookingData: any = ""
+
   numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   today: string = new Date().toISOString().split('T')[0];
 
@@ -28,6 +31,16 @@ export class AdmissionComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.eventname = params.get('name') || '';
       this.fees = params.get('fees') || '';
+      this.eventdatearray = (params.get('bookdate') || '').split(',');
+      this.pickuparray = (params.get('pickup') || '').split(',');
+      this.MForm.patchValue({
+      trekdate: ''
+    });
+    this.MForm.patchValue({
+      pickuplocation: ''
+    });
+
+      // console.log("aray"+ this.eventdatearray);
       this.updateAmount();
     });
   }
@@ -47,7 +60,7 @@ export class AdmissionComponent implements OnInit {
         address: ['', [Validators.required, Validators.minLength(5)]],
         terms: [false, [Validators.required, Validators.requiredTrue]],
         city: ['', [Validators.required, Validators.pattern('^[a-zA-Z- ]+$'), Validators.minLength(4)]],
-        pickuplocation: ['', [Validators.required, Validators.minLength(3)]],
+        pickuplocation: ['', [Validators.required]],
         trekdate: ['', [Validators.required]],
         noofperson: ['1', [Validators.required, Validators.min(1), Validators.max(10)]],
         amount: ['0', []]

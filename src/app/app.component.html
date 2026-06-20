@@ -19,11 +19,12 @@
     </div>
   </div>
   <!-- Mobile Menu Button -->
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+  <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"> -->
+    <button class="navbar-toggler" type="button" (click)="isMenuOpen = !isMenuOpen">
     <span class="navbar-toggler-icon"></span>
   </button>
   <!-- Menu -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" [class.collapse]="!isMenuOpen" [class.show]="isMenuOpen" id="navbarSupportedContent">
     <ul class="navbar-nav ms-auto align-items-center nav-gap">
       <li class="nav-item">
         <a class="nav-link menu-box" routerLink="/" routerLinkActive="active-menu">

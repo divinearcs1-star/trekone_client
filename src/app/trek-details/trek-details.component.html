@@ -28,9 +28,9 @@
                 {{ trek.eventname }}
             </h1>
             <div class="containercls">
-            <h3 *ngIf="event.subtitlevisible" style="color: white; margin-left: 475px;">
-                {{trek.eventTag}}
-            </h3>
+                <h3 *ngIf="event.subtitlevisible" style="color: white; margin-left: 475px;">
+                    {{trek.eventTag}}
+                </h3>
             </div>
             <p *ngIf="event.subtitlevisible" style="font-size:x-large; transform: translateY(-50px);">
                 {{trek.eventTagline}}
@@ -99,9 +99,12 @@
             <div class="booking-card">
                 <h4>Quick Info</h4>
                 <hr>
-                <p>
-                    📅 {{event.eventdate | date:'dd MMM yyyy'}} ( {{event.trektime}} )
-                </p>
+                <div *ngFor="let bookdate of validDates">
+                    <p>
+                        📅 {{bookdate | date:'dd MMM yyyy'}}
+                        <span> {{ bookdate === 'Not available' ? 'No Upcoming Dates' : ' (' + event.trektime + ' )' }}
+                        </span>
+                </div>
                 <p>
                     📍 {{event.trekfrom}}
                 </p>
@@ -117,7 +120,8 @@
                     </div>
                     <strong class="persondata"> / Person </strong>
                 </div>
-                <button class="btn book-btn" [routerLink]="['/admission', event.eventname,event.fees]">
+                <!-- <button class="btn book-btn" [routerLink]="['/admission', event.eventname,event.fees,event.eventdate.join(','),event.picklocation.join(',')]"> -->
+                <button class="btn book-btn" (click)="booknow()">
                     Book Now
                 </button>
                 <div class="trust-box">

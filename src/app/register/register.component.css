@@ -5,7 +5,7 @@
             rgba(0,0,0,.65),
             rgba(0,0,0,.65)
         ),
-        url('/assets/images/hero.jpg');
+        url('/assets/images/hero.webp');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -116,6 +116,34 @@
 }
 .is-invalid {
     border: 1px solid #ef4444 !important;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-input {
+  width: 100%;
+  padding-right: 45px; /* space for eye icon */
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 12px;
+  top: 72%; /* aligns with input center under label */
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 @media(max-width:768px) {
     .register-card {

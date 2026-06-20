@@ -14,10 +14,14 @@
                     <input type="text" class="form-control" [(ngModel)]="loginUserData.email" name="email"
                         placeholder="Enter your email" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group password-wrapper">
                     <label>Password</label>
-                    <input type="password" class="form-control" [(ngModel)]="loginUserData.password" name="password"
-                        placeholder="Enter your password" required>
+                    <input [type]="showPassword ? 'text' : 'password'" class="form-control password-input"
+                        [(ngModel)]="loginUserData.password" name="password" placeholder="Enter your password" required>
+                    <span class="toggle-icon" (click)="togglePassword()">
+                        <img [src]="showPassword ? 'assets/icons/eye.svg' : 'assets/icons/eye.svg'"
+                            alt="toggle password" width="20" height="20" />
+                    </span>
                 </div>
                 <div class="alert alert-danger custom-alert" *ngIf="msg">
                     {{ msg }}

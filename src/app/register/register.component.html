@@ -15,11 +15,16 @@
                 <input type="text" class="form-control" placeholder="Enter Email" formControlName="email"
                     [class.is-invalid]="MForm.get('email')?.invalid && MForm.get('email')?.touched">
             </div>
-            <div class="form-group">
+            <div class="form-group password-wrapper">
                 <label appAstrict>Password</label>
-                <input type="password" class="form-control" placeholder="Create Password" formControlName="password"
-                    [(ngModel)]="password" (input)="checkPasswordStrength()"
+                <input [type]="showPassword ? 'text' : 'password'" class="form-control password-input"
+                    placeholder="Create Password" formControlName="password" [(ngModel)]="password"
+                    (input)="checkPasswordStrength()"
                     [class.is-invalid]="MForm.get('password')?.invalid && MForm.get('password')?.touched">
+                <span class="toggle-icon" (click)="togglePassword()">
+                    <img [src]="showPassword ? 'assets/icons/eye.svg' : 'assets/icons/eye.svg'" alt="toggle password"
+                        width="20" height="20" />
+                </span>
             </div>
             <div class="strength-card">
                 <div class="strength-title">

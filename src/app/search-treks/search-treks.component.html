@@ -1,3 +1,7 @@
+<div *ngIf="loading">
+    Loading...
+</div>
+<div *ngIf="!loading">
 <!-- SEARCH BAR -->
 <div class="search-toolbar">
     <div class="container">
@@ -37,14 +41,15 @@
                         {{event.eventname}}
                     </h4>
                     <p>
-                        {{event.attraction}}
+                        Starts from ₹{{event.fees}}
                     </p>
-                    <button class="btn book-btn" [routerLink]="['/trek-details', event.eventname]">
+                    <button class="btn view-btn" [routerLink]="['/trek-details', event.eventname]">
                         View Details
                     </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>

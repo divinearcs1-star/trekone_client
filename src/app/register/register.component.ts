@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent {
 
+  showPassword: boolean = false;
   submitted = false;
   eventname = ""
   response = ""
@@ -97,9 +98,10 @@ export class RegisterComponent {
         else {
           this.toastr.success(res.message);
         }
-         this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
       },
-      err => {console.log(err);
+      err => {
+        console.log(err);
         if (err.status == '409') {
           this.toastr.warning(err.error.message);
         }
@@ -108,6 +110,10 @@ export class RegisterComponent {
         }
       }
     );
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
 }

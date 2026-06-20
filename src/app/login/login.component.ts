@@ -13,6 +13,7 @@ export class LoginComponent {
   constructor(private authservice: AuthService, private router: Router, private toastr: ToastrService) {
   }
   msg = ""
+  showPassword: boolean = false;
   loginUserData = {
     email: "",
     password: ""
@@ -37,5 +38,9 @@ export class LoginComponent {
   register() {
     console.log("calling register")
     this.router.navigate(['/register']);
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 }

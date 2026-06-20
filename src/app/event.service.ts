@@ -12,18 +12,24 @@ export class EventService {
   paidcollection = "Paidtrek"
 
   // eventsUrl = 'http://localhost:3000/api/trek/' + this.dbname + '/' + this.freecollection
-  eventsUrl =  `${environment.apiUrl}` + '/trek/'  + this.dbname + '/' + this.freecollection;
-  
-  specialeventsUrl = `${environment.apiUrl}` + '/trek/' + this.dbname + '/' +  this.paidcollection;
+  eventsUrl = `${environment.apiUrl}` + '/trek/' + this.dbname + '/' + this.freecollection;
+
+  filtereventsUrl = `${environment.apiUrl}` + '/filtertrek/' + this.dbname + '/' + this.freecollection;
+
+  specialeventsUrl = `${environment.apiUrl}` + '/specialtrek/' + this.dbname + '/' + this.paidcollection;
 
   constructor(private http: HttpClient) {
-   }
+  }
 
-   getEvents(){
+  getEvents() {
     return this.http.get<any>(this.eventsUrl);
-   }
+  }
 
-   getSpecialevents(){
-    return this.http.get<any>(this.specialeventsUrl);
-   }
+  getFilterByDateEvents() {
+    return this.http.get<any>(this.filtereventsUrl);
+  }
+  
+  getSpecialevents() {
+    return this.http.get<any>(this.eventsUrl);
+  }
 }

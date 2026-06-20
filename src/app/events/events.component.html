@@ -1,53 +1,58 @@
 <!-- UPCOMING EVENTS -->
-<section class="trek-section">
-    <div class="container-fluid px-5 ">
-        <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 mb-4" *ngFor="let event of events">
-                <div class="trek-card">
-                    <div class="trek-image">
-                        <img [src]="event.images || '/assets/images/default-trek.jpg'" alt="">
-                        <div class="difficulty-badge">
-                            {{event.difficulty}}
-                        </div>
-                    </div>
-                    <div class="trek-body">
-                        <h4>
-                            {{event.eventname}}
-                        </h4>
-                        <div class="trek-info">
-                            <span>
-                                📅
-                                {{event.eventdate | date:'dd MMM yyyy'}}
-                            </span>
-                            <span>
-                                ⏱️
-                                {{event.duration}}
-                            </span>
-                        </div>
-                        <div class="trek-info">
-                            <span>
-                                📍
-                                {{event.trekfrom}}
-                            </span>
-                        </div>
-                        <div class="trek-footer">
-                            <div class="price">
-                                ₹ {{event.fees}}
+<div *ngIf="loading">
+    Loading...
+</div>
+<div *ngIf="!loading">
+    <section class="trek-section">
+        <div class="container-fluid px-5 ">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-4" *ngFor="let event of allevents">
+                    <div class="trek-card">
+                        <div class="trek-image">
+                            <img [src]="event.images || '/assets/images/default-trek.jpg'" alt="">
+                            <div class="difficulty-badge">
+                                {{event.difficulty}}
                             </div>
-                            <div class="seats">
-                                {{event.availableSeats}}
-                                Seats Left
-                            </div>
-                            <span *ngIf="event.availableSeats <= 10" class="text-danger fw-bold">
-                                Only Few Seats Left
-                            </span>
                         </div>
-                        <button class="btn book-btn" [routerLink]="['/trek-details', event.eventname]">
-                            Book Now
-                        </button>
+                        <div class="trek-body">
+                            <h4>
+                                {{event.eventname}}
+                            </h4>
+                            <div class="trek-info">
+                                <span>
+                                    📅
+                                    {{event.eventdate[0] | date:'dd MMM yyyy'}}
+                                </span>
+                                <span>
+                                    ⏱️
+                                    {{event.duration}}
+                                </span>
+                            </div>
+                            <div class="trek-info">
+                                <span>
+                                    📍
+                                    {{event.trekfrom}}
+                                </span>
+                            </div>
+                            <div class="trek-footer">
+                                <div class="price">
+                                    ₹ {{event.fees}}
+                                </div>
+                                <div class="seats">
+                                    {{event.availableSeats}}
+                                    Seats Left
+                                </div>
+                                <span *ngIf="event.availableSeats <= 10" class="text-danger fw-bold">
+                                    Only Few Seats Left
+                                </span>
+                            </div>
+                            <button class="btn book-btn" [routerLink]="['/trek-details', event.eventname]">
+                                Book Now
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>

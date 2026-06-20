@@ -1,131 +1,83 @@
 <div class="premium-header">
-
     <div class="header-overlay">
-
         <div class="header-content">
-
             <span class="elite-badge">
                 ✨ TREKONE ELITE COLLECTION
             </span>
-
             <h1>
                 Special Expeditions
             </h1>
-
             <p>
                 Rare adventures. Limited departures.
                 Crafted for serious explorers.
             </p>
-
         </div>
-
     </div>
-
 </div>
-
 <section class="expedition-section">
-
     <div class="container-fluid">
-
         <div
             class="expedition-row"
-            *ngFor="let event of events; let i=index"
+            *ngFor="let event of allevents; let i=index"
             [class.reverse]="i % 2 !== 0">
-
             <div class="image-side">
-
                 <img
                     [src]="event.images || '/assets/images/default-trek.webp'"
                     alt="">
-
                 <div class="floating-badge">
-
                     {{event.difficulty}}
-
                 </div>
-
             </div>
-
             <div class="content-side">
-
                 <span class="expedition-type">
                     PREMIUM EXPEDITION
                 </span>
-
                 <h2>
                     {{event.eventname}}
                 </h2>
-
                 <h5 *ngIf="event.subtitlevisible">
                     {{event.eventTag}}
                 </h5>
-
                 <p class="tagline">
                     {{event.eventTagline}}
                 </p>
-
                 <div class="info-grid">
-
                     <div>
                         📅
-                        {{event.eventdate | date:'dd MMM yyyy'}}
+                        {{event.eventdate[0] | date:'dd MMM yyyy'}}
                     </div>
-
                     <div>
                         ⏱️
                         {{event.duration}}
                     </div>
-
                     <div>
                         ⛰️
                         {{event.altitude}}
                     </div>
-
                     <div>
                         📍
                         {{event.trekfrom}}
                     </div>
-
                 </div>
-
                 <p class="description">
-
                     {{event.description | slice:0:180}}...
-
                 </p>
-
                 <div class="footer-row">
-
                     <div>
-
                         <span class="price">
-
                             ₹{{event.fees}}
-
                         </span>
-
                         <span class="person">
-
                             / Person
-
                         </span>
-
                     </div>
-
                     <button
                         class="explore-btn"
                         [routerLink]="['/premium-details', event.eventname]">
-
                         Explore Expedition
-
                     </button>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>

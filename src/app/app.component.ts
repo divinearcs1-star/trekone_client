@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,15 @@ import { AuthService } from './auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(public authservice : AuthService){
-
-  }
-  
+ 
+  constructor(private router: Router,public authservice : AuthService) {
+  this.router.events.subscribe((event: any) => {
+    if (event.url) {
+      // console.log(event.url);
+    }
+  });
+}
+  isMenuOpen = false;
   
 
 }

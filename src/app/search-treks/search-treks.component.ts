@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './search-treks.component.css'
 })
 export class SearchTreksComponent implements OnInit {
+  loading = true;
   events: any[] = [];
   filteredEvents: any[] = [];
   searchText = '';
@@ -26,16 +27,20 @@ export class SearchTreksComponent implements OnInit {
       this.events = data;
       if (!this.searchText.trim()) {
         this.filteredEvents = [...this.events];
+        this.loading = false;
       } else {
         const search = this.searchText.toLowerCase();
         this.filteredEvents = this.events.filter((event: any) =>
           event.eventname?.toLowerCase().includes(search)
         );
+        this.loading = false;
       }
       this.events = data;
       this.originalEvents = [...data];
+      this.loading = false;
     });
   }
+  
   applySearch(): void {
     const search =
       this.searchText.trim().toLowerCase();

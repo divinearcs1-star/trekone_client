@@ -370,6 +370,7 @@ section {
 .header {
   text-align: center;
   margin-bottom: 20px;
+  color: white;
 }
 .carousel {
   overflow: hidden;
@@ -615,4 +616,13 @@ section {
     section{
         padding:60px 0;
     }
+}
+
+.top-btn {
+  position: fixed;
+  bottom: 200px;
+  right: 0px;
+  cursor: pointer;
+  background-color: white;
+  border-color: white;
 }

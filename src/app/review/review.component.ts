@@ -47,24 +47,17 @@ export class ReviewComponent implements OnInit {
             response.razorpay_signature
           */
           alert('Payment Successful');
-
           //
           this.bookingservice.getverifysignature(response, order.bookingid).subscribe((response: any) => {
             console.log(response);
             // this.toastr.warning('Payment Veified & booking Completed')
             this.toastr.success('Booking successfully Completed');
-
             //  
             this.bookingData.bookingid = order.bookingid;
-            sessionStorage.setItem('bookingData',JSON.stringify(this.bookingData));
+            sessionStorage.setItem('bookingData', JSON.stringify(this.bookingData));
 
             this.router.navigate(['/greeting']);
-
-
-            //
-
           });
-          //
         }
 
       };
@@ -72,7 +65,7 @@ export class ReviewComponent implements OnInit {
       rzp.open();
       rzp.on('payment.failed', function (response: any) {
         console.log('Payment Failed:', response);
-
+        
         alert(response.error.description);
 
         console.log(response.error.code);

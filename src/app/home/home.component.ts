@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { EventService } from '../event.service';
 import { Router } from '@angular/router';
 @Component({
@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ========================== */
   events: any[] = [];
   filteredEvents: any[] = [];
+  validDates: string[] = [];
   searchText = '';
   intervalId: any;
   days = 0;
@@ -24,6 +25,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   visibleCount = 4; // 4 images visible
   intervalId1: any;
+
+  allevents: any = []
+  showTopButton = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showTopButton = window.scrollY > 1000;
+  }
   constructor(private service: EventService, private router: Router) {
   }
   ngOnInit(): void {
@@ -39,11 +48,23 @@ export class HomeComponent implements OnInit, OnDestroy {
       LOAD EVENTS
   ========================== */
   loadEvents(): void {
-    this.service.getEvents().subscribe({
+    this.service.getFilterByDateEvents().subscribe({
       next: (data: any) => {
-        console.log('Events => ', data);
+        // console.log('Events => ', data);
         this.events = data || [];
         this.filteredEvents = [...this.events];
+
+        const today = new Date().toISOString().split('T')[0];
+        this.allevents = this.events.map((event: any) => ({
+          ...event,
+          eventdate: event.eventdate
+            .filter((date: string) => date >= today)
+            .sort(
+              (a: string, b: string) =>
+                new Date(a).getTime() - new Date(b).getTime()
+            )
+        }));
+
         this.startCountdown();
       },
       error: (err: any) => {
@@ -105,9 +126,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
   startCountdown() {
-    console.log(new Date(this.events[0].eventdate));
+    const minIndex = this.allevents.reduce(
+      (minIdx: number, event: any, currentIdx: number) => {
+        const smallestDate = event.eventdate.sort()[0];
+
+        return smallestDate < this.allevents[minIdx].eventdate.sort()[0]
+          ? currentIdx
+          : minIdx;
+      },
+      0
+    );
+    // console.log(minIndex);
+
+    // console.log(new Date(this.allevents[minIndex].eventdate.sort()[0]));
     if (this.events.length) {
-      const trekDate = new Date(this.events[0].eventdate);
+      const trekDate = new Date(this.allevents[minIndex].eventdate.sort()[0]);
       this.intervalId = setInterval(() => {
         const now = new Date().getTime();
         const distance = trekDate.getTime() - now;
@@ -199,15 +232,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.currentIndex = this.galleryImages.length - this.visibleCount; // go to last view
     }
   }
-
-//   scrollTo(sectionId: string) {
-//   const element = document.getElementById(sectionId);
-
-//   if (element) {
-//     element.scrollIntoView({
-//       behavior: 'smooth',
-//       block: 'start'
-//     });
-//   }
-// }
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 }

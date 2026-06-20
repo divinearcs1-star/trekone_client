@@ -61,17 +61,30 @@
             <div class="booking-grid">
                 <div class="form-field pickloc">
                     <label appAstrict>Pickup Location</label>
-                    <input
+                    <!-- <input
                         [class.is-invalid]="MForm.get('pickuplocation')?.invalid && MForm.get('pickuplocation')?.touched"
-                        type="text" class="form-control" formControlName="pickuplocation">
-                    <small [class.d-none]="MForm.get('pickuplocation')?.valid || MForm.get('pickuplocation')?.untouched"
-                        class="text-danger">
-                        Invalid location
+                        type="text" class="form-control" formControlName="pickuplocation"> -->
+                    <select class="form-select form-control" formControlName="pickuplocation">
+                        <option value="">Select Pickup Location</option>
+                        <option *ngFor="let pickup of pickuparray" [value]="pickup">
+                            {{ pickup }}
+                        </option>
+                    </select>
+                    <small class="text-danger" *ngIf="MForm.get('pickuplocation')?.hasError('required') && (MForm.get('pickuplocation')?.dirty || 
+                    MForm.get('pickuplocation')?.touched)">
+                        select location
                     </small>
                 </div>
+
                 <div class="form-field">
                     <label appAstrict>Trek Date</label>
-                    <input type="date" class="form-control" [min]="today" formControlName="trekdate">
+                    <!-- <input type="date" class="form-control" [min]="today" formControlName="trekdate"> -->
+                    <select class="form-select form-control" formControlName="trekdate">
+                        <option value="">Select Date</option>
+                        <option *ngFor="let date of eventdatearray" [value]="date">
+                            {{ date | date:'dd MMM yyyy' }}
+                        </option>
+                    </select>
                     <div class="text-danger" *ngIf="MForm.get('trekdate')?.hasError('required') && (MForm.get('trekdate')?.dirty || 
                     MForm.get('trekdate')?.touched)">
                         Trek Date is required

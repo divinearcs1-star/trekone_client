@@ -79,7 +79,8 @@
             </p>
         </div>
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 mb-4" *ngFor="let event of filteredEvents">
+            <div class="col-xl-3 col-lg-3 col-md-6 mb-4" *ngFor="let event of allevents">
+                <!-- <div *ngIf="event?.eventdate"> -->
                 <div class="trek-card">
                     <div class="trek-image">
                         <img [src]="event.images || '/assets/images/default-trek.jpg'" alt="">
@@ -94,7 +95,7 @@
                         <div class="trek-info">
                             <span>
                                 📅
-                                {{event.eventdate | date:'dd MMM yyyy'}}
+                                {{event.eventdate[0] | date:'dd MMM yyyy'}}
                             </span>
                             <span>
                                 ⏱️
@@ -124,6 +125,7 @@
                         </button>
                     </div>
                 </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -188,7 +190,7 @@
 <!-- GALLERY -->
 <div id="gallery" class="gallery-strip">
     <div class="header">
-        <h2>📸 Trek Gallery</h2>
+        <h2>📸 TrekOne Moments</h2>
     </div>
     <div class="carousel">
         <button class="nav left" (click)="prev()">❮</button>
@@ -265,7 +267,7 @@
             the beauty of Maharashtra.
         </p>
         <a class="btn cta-btn" (click)="exploreTreks('blank')">
-            View Upcoming Treks
+            View All Adventures
         </a>
     </div>
 </section>
@@ -284,7 +286,7 @@
                 <ul>
                     <li>
                         <a [routerLink]="['/']" fragment="upcoming"> Upcoming Treks </a>
-                    </li>  
+                    </li>
                     <li>
                         <a [routerLink]="['/']" (click)="exploreTreks('Family')"> Family Events </a>
                     </li>
@@ -301,8 +303,10 @@
             </div>
             <div class="col-lg-3">
                 <h5>Follow Us</h5>
-                <p> <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer">Instagram</a> </p>
-                <p> <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer">Facebook</a> </p>
+                <p> <a href="https://www.instagram.com/accounts/login/" target="_blank"
+                        rel="noopener noreferrer">Instagram</a> </p>
+                <p> <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                </p>
                 <p> <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a> </p>
             </div>
         </div>
@@ -318,5 +322,8 @@
     <span class="tooltip-text">
         Chat With Us
     </span>
-    <img src="/assets/images/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+    <img src="/assets/icons/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
 </a>
+<button *ngIf="showTopButton" (click)="scrollToTop()" class="top-btn">
+  ⬆
+</button>

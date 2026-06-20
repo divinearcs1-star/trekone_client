@@ -25,7 +25,7 @@ const routes: Routes = [
     component: SpecialEventsComponent
   },
   { path: 'login', component: LoginComponent },
-  { path: 'admission/:name/:fees', component: AdmissionComponent },
+  { path: 'admission/:name/:fees/:bookdate/:pickup', component: AdmissionComponent },
   { path: 'greeting', component: GreetingComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'trek-details/:eventname', component: TrekDetailsComponent },

@@ -21,6 +21,9 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.firebase/hosting.ZGlzdFxjbGllbnRzXGJyb3dzZXI.cache
+.firebaserc
+firebase.json
 
 # Visual Studio Code
 .vscode/*

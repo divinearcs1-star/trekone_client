@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingService } from '../booking.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-review',
@@ -11,21 +12,19 @@ import { ToastrService } from 'ngx-toastr';
 export class ReviewComponent implements OnInit {
   bookingData: any = ""
 
-  constructor(private router: Router, private route: ActivatedRoute, private bookingservice: BookingService, private toastr: ToastrService) {
-
+  constructor(private router: Router, private route: ActivatedRoute, private bookingservice: BookingService,
+    private toastr: ToastrService) {
   }
   ngOnInit() {
     this.bookingData = history.state.bookingData;
-    //    console.log(data.name);
-    // console.log(data.fees);
   }
 
   payment() {
 
-    this.bookingservice.getbookingdata(this.bookingData).subscribe((order: any) => {
+    this.bookingservice.createOrder(this.bookingData).subscribe((order: any) => {
       console.log("order =>", order);
       const options: any = {
-        key: 'rzp_test_T1bKRGsWtKElGO',
+         key: environment.razorpayKey,
         amount: order.amount,
         currency: order.currency,
         name: 'TrekOne Booking',
@@ -41,57 +40,24 @@ export class ReviewComponent implements OnInit {
         },
         handler: (response: any) => {
           console.log(response);
-          /*
-            response.razorpay_payment_id
-            response.razorpay_order_id
-            response.razorpay_signature
-          */
-          alert('Payment Successful');
-          //
-          this.bookingservice.getverifysignature(response, order.bookingid).subscribe((response: any) => {
+          this.bookingservice.getverifysignature(response).subscribe((response: any) => {
             console.log(response);
-            // this.toastr.warning('Payment Veified & booking Completed')
-            this.toastr.success('Booking successfully Completed');
-            //  
+            this.toastr.success('Payment successful');
             this.bookingData.bookingid = order.bookingid;
             sessionStorage.setItem('bookingData', JSON.stringify(this.bookingData));
-
             this.router.navigate(['/greeting']);
+          }, err => {
+            console.log(err);
+            this.toastr.error('Payment verification failed');
           });
         }
-
       };
       const rzp = new (window as any).Razorpay(options);
       rzp.open();
-      rzp.on('payment.failed', function (response: any) {
+      rzp.on('payment.failed', (response: any) => {
         console.log('Payment Failed:', response);
-        
-        alert(response.error.description);
-
-        console.log(response.error.code);
-        console.log(response.error.description);
-        console.log(response.error.source);
-        console.log(response.error.step);
-        console.log(response.error.reason);
+        this.toastr.error(response.error.description);
       });
     });
-
-    // res => {
-    //   console.log(res)
-    //   if (res.status === '200') {
-    //     console.log("Booking data submitted");
-    //     this.toastr.success(res.message);
-    //   }
-    //   else {
-    //     console.log(res.status);
-    //     //   show toast message
-    //     this.toastr.error(res.message);
-    //   }
-    // },
-    // err => {
-    //   console.log(err.error.message)
-    //   this.toastr.error(err.error.message);
-    //   console.log(err)
-    // }
   }
 }

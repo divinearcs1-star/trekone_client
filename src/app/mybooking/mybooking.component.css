@@ -1,0 +1,214 @@
+.booking-page {
+    width: 92%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #111827;
+}
+
+.page-title p {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.booking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.booking-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.booking-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-top h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.booking-id {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.right-top {
+    text-align: right;
+}
+
+.status {
+    background: #dcfce7;
+    color: #166534;
+    padding: 6px 12px;
+    border-radius: 18px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.right-top h3 {
+    margin-top: 8px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.info-item {
+    background: #f9fafb;
+    padding: 14px;
+    border-radius: 10px;
+}
+
+.info-item label {
+    display: block;
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 6px;
+}
+
+.info-item p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.booking-footer {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-left p {
+    margin: 0;
+    font-size: 15px;
+    color: #374151;
+}
+
+.footer-left small {
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.cancel-btn {
+    padding: 12px 18px;
+    border: none;
+    background: #ef4444;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cancel-btn:hover {
+    opacity: 0.9;
+}
+
+.loading-box,
+.empty-box {
+    text-align: center;
+    padding: 40px;
+    color: #6b7280;
+}
+.actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.refund-btn {
+    padding: 12px 18px;
+    border: none;
+    background: #16a34a;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.refund-btn:hover {
+    opacity: 0.9;
+}
+
+.download-btn {
+    padding: 12px 18px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.download-btn:hover {
+    opacity: 0.9;
+}
+
+@media(max-width: 768px) {
+    .booking-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .booking-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+.actions {
+    width: 100%;
+}
+
+.actions button {
+    width: 100%;
+}
+}
+
+@media(max-width: 500px) {
+    .booking-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .right-top {
+        text-align: left;
+    }
+}

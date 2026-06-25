@@ -1,0 +1,67 @@
+<div class="booking-page">
+    <div class="page-title">
+        <h1>My Bookings</h1>
+        <p>Track and manage your booked treks</p>
+    </div>
+    <div *ngIf="loading" class="loading-box">
+        Loading bookings...
+    </div>
+    <div *ngIf="!loading && bookings.length === 0" class="empty-box">
+        <h2>No Bookings Found</h2>
+        <p>Your bookings will appear here.</p>
+    </div>
+    <div class="booking-list">
+        <div class="booking-card" *ngFor="let booking of bookings">
+            <!-- Top -->
+            <div class="booking-top">
+                <div>
+                    <h2>{{ booking.eventname }}</h2>
+                    <span class="booking-id">{{ booking.bookingid }}</span>
+                </div>
+                <div class="right-top">
+                    <span class="status">{{ booking.paymentstatus }}</span>
+                    <h3>₹{{ booking.amount }}</h3>
+                </div>
+            </div>
+            <!-- Middle -->
+            <div class="booking-grid">
+                <div class="info-item">
+                    <label>Trek Date</label>
+                    <p>{{ booking.eventdate | date:'mediumDate' }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Pickup</label>
+                    <p>{{ booking.pickuplocation }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Persons</label>
+                    <p>{{ booking.noofpersons }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Payment Via</label>
+                    <p>{{ booking.paymentvia }}</p>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="booking-footer">
+                <div class="footer-left">
+                    <p>Booked on {{ booking.bookingdate | date:'mediumDate' }}</p>
+                    <small>{{ booking.paymentid }}</small>
+                </div>
+                <div class="actions">
+                    <button class="download-btn" (click)="downloadReceipt()">
+                        Download Receipt
+                    </button>
+                    <button *ngIf="isRefundEligible(booking)" class="refund-btn" (click)="cancelAndRefund(booking)">
+                        Cancel & Refund
+                    </button>
+                    <button *ngIf="!isRefundEligible(booking)" class="cancel-btn"
+                        (click)="cancelBooking(booking.bookingid)">
+                        Cancel Booking
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

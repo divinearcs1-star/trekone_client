@@ -32,7 +32,8 @@ export class RegisterComponent {
 
 
   // Inject FormBuilder service
-  constructor(private FB: FormBuilder, private authservice: AuthService, private router: Router, private toastr: ToastrService) {
+  constructor(private FB: FormBuilder, private authservice: AuthService, private router: Router, 
+    private toastr: ToastrService) {
   }
 
   ngOnInit(): void {

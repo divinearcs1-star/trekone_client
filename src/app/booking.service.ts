@@ -8,21 +8,17 @@ import { environment } from '../environments/environment';
 })
 export class BookingService {
 
-  dbname = "Trekways"
-  collectionname = "Bookings"
-
-  bookingUrl = `${environment.apiUrl}` + '/booking/' + this.dbname + '/' + this.collectionname
-  verifypaymentUrl = `${environment.apiUrl}` + '/verifypayment/' + this.dbname + '/' + this.collectionname
+  bookingUrl = `${environment.apiUrl}` + '/payment/booking'
+  verifypaymentUrl = `${environment.apiUrl}` + '/payment/verifypayment'
 
   constructor(private http: HttpClient) {
   }
 
-  getbookingdata(userdata :any) {
+  createOrder(userdata :any) {
     return this.http.post<any>(this.bookingUrl,userdata);
   }
 
-  getverifysignature(signaturedata :any, bookid :string) {
-    this.verifypaymentUrl = this.verifypaymentUrl + '/' + bookid;
+  getverifysignature(signaturedata :any) {
     return this.http.post<any>(this.verifypaymentUrl,signaturedata);
   }
 }

@@ -29,6 +29,7 @@
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.8",
     "ngx-toastr": "^17.0.2",
+    "nodemailer": "^9.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

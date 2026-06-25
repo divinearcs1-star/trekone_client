@@ -136,3 +136,22 @@
   height: 20px;
   object-fit: contain;
 }
+
+
+.forgot-password-container {
+    margin-top: 14px;
+    text-align: center;
+}
+
+.forgot-password-link {
+    font-size: 13px;
+    color: #d1d5db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}

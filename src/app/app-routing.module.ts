@@ -14,6 +14,9 @@ import { HomeComponent } from './home/home.component';
 import { TrekDetailsComponent } from './trek-details/trek-details.component';
 import { SearchTreksComponent } from './search-treks/search-treks.component';
 import { PremiumDetailsComponent } from './premium-details/premium-details.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { MybookingComponent } from './mybooking/mybooking.component';
 
 const routes: Routes = [
   //  {path : '', redirectTo:'events', pathMatch:'full'},
@@ -32,7 +35,10 @@ const routes: Routes = [
   { path: 'premium-details/:eventname', component: PremiumDetailsComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'search-treks', component: SearchTreksComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password/:token', component: ResetPasswordComponent },
   { path: 'terms-and-conditions', component: TermsComponent },
+  { path: 'mybooking/:email', component: MybookingComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 

@@ -1,19 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
- import { environment } from '../environments/environment';
-
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  dbname = "UserAdmin"
-  collectionname = "Users"
-  loginUrl = `${environment.apiUrl}` + '/login/' + this.dbname + '/' + this.collectionname
-  registerUrl = `${environment.apiUrl}` + '/register'
-  
+  loginUrl = `${environment.apiUrl}` + '/auth/login'
+  registerUrl = `${environment.apiUrl}` + '/auth/register'
+  forgotPasswordUrl = `${environment.apiUrl}` + '/auth/forgot-password'
+  resetPasswordUrl = `${environment.apiUrl}` + '/auth/reset-password'
+
   constructor(private http: HttpClient, private router: Router) {
   }
 
@@ -38,6 +37,21 @@ export class AuthService {
   registerUser(userdata: any) {
     console.log("going to server")
     return this.http.post<any>(this.registerUrl, userdata);
+  }
+
+
+  forgotPassword(useremail: any) {
+    console.log("going to server")
+    return this.http.post<any>(this.forgotPasswordUrl, {
+      email : useremail
+    });
+  }
+
+  resetPassword(token: string, password: string) {
+    return this.http.post<any>(this.resetPasswordUrl, {
+      token,
+      password
+    });
   }
 
 }

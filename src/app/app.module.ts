@@ -31,6 +31,9 @@ import { HomeComponent } from './home/home.component';
 import { TrekDetailsComponent } from './trek-details/trek-details.component';
 import { SearchTreksComponent } from './search-treks/search-treks.component';
 import { PremiumDetailsComponent } from './premium-details/premium-details.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { MybookingComponent } from './mybooking/mybooking.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { PremiumDetailsComponent } from './premium-details/premium-details.compo
     HomeComponent,
     TrekDetailsComponent,
     SearchTreksComponent,
-    PremiumDetailsComponent
+    PremiumDetailsComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    MybookingComponent
   ],
   imports: [
     BrowserModule,

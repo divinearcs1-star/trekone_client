@@ -7,16 +7,15 @@ import { environment } from '../environments/environment';
 })
 export class EventService {
 
-  dbname = "Trekways"
-  freecollection = "Freetrek"
-  paidcollection = "Paidtrek"
+  // eventsUrl = 'http://localhost:3000/api/trek'
+  eventsUrl = `${environment.apiUrl}` + '/api/trek'
 
-  // eventsUrl = 'http://localhost:3000/api/trek/' + this.dbname + '/' + this.freecollection
-  eventsUrl = `${environment.apiUrl}` + '/trek/' + this.dbname + '/' + this.freecollection;
+  filtereventsUrl = `${environment.apiUrl}` + '/api/filtertrek'
+  specialeventsUrl = `${environment.apiUrl}` + '/api/specialtrek'
+  bookingsUrl = `${environment.apiUrl}` + '/api/mybookings/'
+  cancelBookingUrl = `${environment.apiUrl}` + '/api/mybookings/'
+  cancelAndRefundUrl = `${environment.apiUrl}` + '/payment/cancel-refund'
 
-  filtereventsUrl = `${environment.apiUrl}` + '/filtertrek/' + this.dbname + '/' + this.freecollection;
-
-  specialeventsUrl = `${environment.apiUrl}` + '/specialtrek/' + this.dbname + '/' + this.paidcollection;
 
   constructor(private http: HttpClient) {
   }
@@ -28,8 +27,20 @@ export class EventService {
   getFilterByDateEvents() {
     return this.http.get<any>(this.filtereventsUrl);
   }
-  
+
   getSpecialevents() {
-    return this.http.get<any>(this.eventsUrl);
+    return this.http.get<any>(this.specialeventsUrl);
+  }
+
+  getBookings(email: any) {
+    return this.http.get<any>(this.bookingsUrl + email);
+  }
+
+  cancelBooking(bookingid: any) {
+    return this.http.post<any>(this.bookingsUrl,  { bookingid });
+  }
+
+  cancelAndRefund(payload: any) {
+    return this.http.post<any>(this.cancelAndRefundUrl , payload);
   }
 }

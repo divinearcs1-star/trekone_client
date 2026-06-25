@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://trekone.onrender.com/api'
+  razorpayKey: 'rzp_test_T1bKRGsWtKElGO',
+  apiUrl: 'https://trekone.onrender.com'
 };

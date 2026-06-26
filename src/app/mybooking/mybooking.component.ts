@@ -54,7 +54,8 @@ export class MybookingComponent implements OnInit {
       trekDate > now &&                  // trek in future
       diffInHours >= 48 &&               // minimum 48 hours
       booking.paymentstatus === 'Paid' &&
-      booking.refundstatus !== 'Refunded'
+      booking.refundstatus !== 'Refunded' &&
+      booking.bookingstatus !== 'Cancelled'
     );
   }
 
@@ -70,7 +71,6 @@ export class MybookingComponent implements OnInit {
 
         if (booking) {
           booking.bookingstatus = "Cancelled";
-
         }
         if (res.success == false) {
           this.toastr.warning(res.message);
@@ -81,10 +81,17 @@ export class MybookingComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        this.toastr.warning(err.error.message);
+        this.toastr.error(err.error.message);
       }
     });
   }
+
+  // canCancelBooking(booking: any): boolean {
+  //   return (
+  //     booking.bookingstatus !== 'Cancelled' &&
+  //     booking.refundstatus !== 'Refunded'
+  //   );
+  // }
 
   cancelAndRefund(booking: any) {
 
@@ -110,14 +117,19 @@ export class MybookingComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        this.toastr.warning(err.error.message);
+        this.toastr.error(err.error.message);
       }
     });
   }
 
-  downloadReceipt() {
+  downloadReceipt(bid: any) {
+    //
+    const booking = this.bookings.find(
+      x => x.bookingid === bid
+    );
+    //
+    console.log("booking id :", bid);
     const pdf = new jsPDF();
-    const booking = this.bookingData;
     // Header
     pdf.setFontSize(22);
     pdf.setFont('helvetica', 'bold');

@@ -8,16 +8,14 @@ import { environment } from '../environments/environment';
 })
 export class AuthService {
 
-  loginUrl = `${environment.apiUrl}` + '/auth/login'
-  registerUrl = `${environment.apiUrl}` + '/auth/register'
+  loginUrl = `${environment.apiUrl}` + '/api/login'
+  registerUrl = `${environment.apiUrl}` + '/api/register'
   forgotPasswordUrl = `${environment.apiUrl}` + '/auth/forgot-password'
   resetPasswordUrl = `${environment.apiUrl}` + '/auth/reset-password'
+  refreshTokenUrl = `${environment.apiUrl}` + '/api/refresh-token'
+  logoutUrl = `${environment.apiUrl}` + '/api/logout'
 
   constructor(private http: HttpClient, private router: Router) {
-  }
-
-  getToken() {
-    return localStorage.getItem('token');
   }
 
   loginUser(user: any) {
@@ -25,13 +23,24 @@ export class AuthService {
     return this.http.post<any>(this.loginUrl, user);
   }
 
+  getAccessToken() {
+    return localStorage.getItem('accessToken');
+  }
+
+  getRefreshToken() {
+    return localStorage.getItem('refreshToken');
+  }
+
+  getRole() {
+    return localStorage.getItem('role');
+  }
+
   logoutUser() {
-    localStorage.removeItem('token');
-    return this.router.navigate(['/']);
+    this.logout();
   }
 
   loggedIn() {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('accessToken');
   }
 
   registerUser(userdata: any) {
@@ -39,11 +48,10 @@ export class AuthService {
     return this.http.post<any>(this.registerUrl, userdata);
   }
 
-
   forgotPassword(useremail: any) {
     console.log("going to server")
     return this.http.post<any>(this.forgotPasswordUrl, {
-      email : useremail
+      email: useremail
     });
   }
 
@@ -54,4 +62,30 @@ export class AuthService {
     });
   }
 
+  saveTokens(accessToken: string, refreshToken: string, role: string) {
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+    localStorage.setItem('role', role);
+  }
+
+  refreshToken() {
+    return this.http.post<any>(this.refreshTokenUrl, {
+      refreshToken: this.getRefreshToken()
+    });
+  }
+
+  logout() {
+    const refreshToken = localStorage.getItem('refreshToken');
+    this.http.post(this.logoutUrl, { refreshToken }).subscribe(
+      {
+        next: () => {
+          localStorage.clear();
+          this.router.navigate(['/']);
+        },
+        error: () => {
+          localStorage.clear();
+          this.router.navigate(['/']);
+        }
+      });
+  }
 }

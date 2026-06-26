@@ -22,15 +22,17 @@ export class LoginComponent {
     this.authservice.loginUser(this.loginUserData).subscribe(
       res => {
         console.log("received token")
-        console.log(res.token)
-        localStorage.setItem('token', res.token);
+        this.authservice.saveTokens(res.accessToken, res.refreshToken,res.role);
+        console.log(res.accessToken)
+        console.log(res.refreshToken)
+        console.log(res.role)
+
         console.log("entering into special")
         this.router.navigate(['/special']);
       },
       err => {
         console.log(err)
         this.msg = err.error.message;
-        ;
       }
     );
   }

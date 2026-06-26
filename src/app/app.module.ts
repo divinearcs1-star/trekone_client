@@ -34,6 +34,7 @@ import { PremiumDetailsComponent } from './premium-details/premium-details.compo
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MybookingComponent } from './mybooking/mybooking.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MybookingComponent } from './mybooking/mybooking.component';
     PremiumDetailsComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    MybookingComponent
+    MybookingComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,8 @@ import { PremiumDetailsComponent } from './premium-details/premium-details.compo
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MybookingComponent } from './mybooking/mybooking.component';
+import { AdminComponent } from './admin/admin.component';
+import { adminGuard } from './admin.guard';
 
 const routes: Routes = [
   //  {path : '', redirectTo:'events', pathMatch:'full'},
@@ -26,6 +28,11 @@ const routes: Routes = [
     path: 'special',
     canActivate: [authGuard],
     component: SpecialEventsComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [adminGuard]
   },
   { path: 'login', component: LoginComponent },
   { path: 'admission/:name/:fees/:bookdate/:pickup', component: AdmissionComponent },

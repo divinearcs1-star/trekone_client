@@ -49,16 +49,21 @@
                     <small>{{ booking.paymentid }}</small>
                 </div>
                 <div class="actions">
-                    <button class="download-btn" (click)="downloadReceipt()">
+                    <button class="download-btn" (click)="downloadReceipt(booking.bookingid)">
                         Download Receipt
                     </button>
-                    <button *ngIf="isRefundEligible(booking)" class="refund-btn" (click)="cancelAndRefund(booking)">
+                    <button *ngIf="booking.bookingstatus !== 'Cancelled' && isRefundEligible(booking)"
+                        class="refund-btn" (click)="cancelAndRefund(booking)">
                         Cancel & Refund
                     </button>
-                    <button *ngIf="!isRefundEligible(booking)" class="cancel-btn"
-                        (click)="cancelBooking(booking.bookingid)">
+                    <button *ngIf="booking.bookingstatus !== 'Cancelled' && !isRefundEligible(booking)"
+                        class="cancel-btn" (click)="cancelBooking(booking.bookingid)">
                         Cancel Booking
                     </button>
+                    <!-- Show final status -->
+                    <span *ngIf="booking.bookingstatus === 'Cancelled'" class="cancelled-label">
+                        {{ booking.paymentstatus === 'Refunded' ? 'Refunded' : 'Cancelled' }}
+                    </span>
 
                 </div>
             </div>

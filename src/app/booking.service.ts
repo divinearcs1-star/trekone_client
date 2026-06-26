@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class BookingService {
 
-  bookingUrl = `${environment.apiUrl}` + '/payment/booking'
+  bookingUrl = `${environment.apiUrl}` + '/booking/create-Order'
   verifypaymentUrl = `${environment.apiUrl}` + '/payment/verifypayment'
 
   constructor(private http: HttpClient) {

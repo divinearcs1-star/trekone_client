@@ -10,7 +10,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptorService } from './token-interceptor.service';
-import { authGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import { AdmissionComponent } from './admission/admission.component';
@@ -35,6 +34,12 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MybookingComponent } from './mybooking/mybooking.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AdminTreksComponent } from './admin-treks/admin-treks.component';
+import { AddTrekComponent } from './add-trek/add-trek.component';
+import { AdminRefundsComponent } from './admin-refunds/admin-refunds.component';
+import { AdminPaymentsComponent } from './admin-payments/admin-payments.component';
 
 @NgModule({
   declarations: [
@@ -56,14 +61,20 @@ import { AdminComponent } from './admin/admin.component';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     MybookingComponent,
-    AdminComponent
+    AdminComponent,
+    AddTrekComponent,
+    AdminBookingsComponent,
+    AdminUsersComponent,
+    AdminTreksComponent,
+    AdminRefundsComponent,
+    AdminPaymentsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,HttpClientModule,FormsModule,ReactiveFormsModule,BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 4000,
       positionClass: 'toast-top-right',
       preventDuplicates: true
     }),

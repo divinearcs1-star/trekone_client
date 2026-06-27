@@ -1,0 +1,49 @@
+<div class="form-page">
+
+    <h1>{{ isEditMode ? 'Edit Trek' : 'Add New Trek' }}</h1>
+
+    <div class="form-box">
+
+        <input [(ngModel)]="trekData.eventname" placeholder="Event Name">
+
+        <textarea [(ngModel)]="trekData.description" placeholder="Description"></textarea>
+
+        <input [(ngModel)]="trekData.eventTagline" placeholder="Tagline">
+
+        <input [(ngModel)]="trekData.eventdate" placeholder="Event Date">
+
+        <input [(ngModel)]="trekData.duration" placeholder="Duration">
+
+        <input [(ngModel)]="trekData.fees" placeholder="Fees">
+
+        <input [(ngModel)]="trekData.difficulty" placeholder="Difficulty">
+
+        <input [(ngModel)]="trekData.altitude" placeholder="Altitude">
+
+        <input [(ngModel)]="trekData.guide" placeholder="Guide Name">
+
+        <input [(ngModel)]="trekData.images" placeholder="Main Image Path">
+
+        <input [(ngModel)]="trekData.availableSeats" placeholder="Available Seats">
+
+        <input [(ngModel)]="trekData.totalSeats" placeholder="Total Seats">
+
+        <input [(ngModel)]="trekData.departurefrom" placeholder="Departure From">
+
+        <input [(ngModel)]="trekData.trekfrom" placeholder="Trek From">
+
+        <input [(ngModel)]="trekData.trekroute" placeholder="Trek Route">
+
+        <input [(ngModel)]="trekData.trektime" placeholder="Trek Time">
+
+        <label>
+            <input type="checkbox" [(ngModel)]="trekData.specialEvent">
+            Paid Trek (Special Event)
+        </label>
+
+        <button (click)="saveTrek()">
+            {{ isEditMode ? 'Update Trek' : 'Save Trek' }}
+        </button>
+
+    </div>
+</div>

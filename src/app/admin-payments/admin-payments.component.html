@@ -1,0 +1,39 @@
+<div class="payments-page">
+
+    <h1>Payment Management</h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Order ID</th>
+                <th>Payment ID</th>
+                <th>Email</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Refund</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let payment of payments">
+
+                <td>{{ payment.bookingid }}</td>
+                <td>{{ payment.orderid }}</td>
+                <td>{{ payment.paymentid }}</td>
+                <td>{{ payment.email }}</td>
+                <td>₹{{ payment.amount }}</td>
+                <td>{{ payment.paymentstatus }}</td>
+                <td>{{ payment.refundstatus || 'N/A' }}</td>
+                <td>{{ payment.paymentdate | date:'medium' }}</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

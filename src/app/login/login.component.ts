@@ -24,7 +24,6 @@ export class LoginComponent {
         console.log("received token")
         this.authservice.saveTokens(res.accessToken, res.refreshToken,res.role);
         console.log(res.accessToken)
-        console.log(res.refreshToken)
         console.log(res.role)
 
         console.log("entering into special")

@@ -1,0 +1,24 @@
+.form-page {
+  padding: 30px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 700px;
+}
+
+input, textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+button {
+  background: #111827;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+}

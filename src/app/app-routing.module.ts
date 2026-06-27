@@ -19,6 +19,12 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { MybookingComponent } from './mybooking/mybooking.component';
 import { AdminComponent } from './admin/admin.component';
 import { adminGuard } from './admin.guard';
+import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
+import { AdminTreksComponent } from './admin-treks/admin-treks.component';
+import { AddTrekComponent } from './add-trek/add-trek.component';
+import { AdminRefundsComponent } from './admin-refunds/admin-refunds.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AdminPaymentsComponent } from './admin-payments/admin-payments.component';
 
 const routes: Routes = [
   //  {path : '', redirectTo:'events', pathMatch:'full'},
@@ -34,6 +40,41 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [adminGuard]
   },
+  {
+    path: 'admin/treks',
+    component: AdminTreksComponent
+    ,canActivate: [adminGuard]
+  },
+  {
+    path: 'admin/add-trek',
+    component: AddTrekComponent,
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'admin/edit-trek/:id/:type',
+    component: AddTrekComponent
+    ,canActivate: [adminGuard]
+  },
+  {
+    path: 'admin/bookings',
+    component: AdminBookingsComponent
+    ,canActivate: [adminGuard]
+  },
+  {
+    path: 'admin/refunds',
+    component: AdminRefundsComponent
+    ,canActivate: [adminGuard]
+  },
+  {
+  path: 'admin/users',
+  component: AdminUsersComponent
+  ,canActivate: [adminGuard]
+},
+{
+   path: 'admin/payments',
+   component: AdminPaymentsComponent
+   ,canActivate: [adminGuard]
+},
   { path: 'login', component: LoginComponent },
   { path: 'admission/:name/:fees/:bookdate/:pickup', component: AdmissionComponent },
   { path: 'greeting', component: GreetingComponent },

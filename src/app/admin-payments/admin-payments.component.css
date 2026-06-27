@@ -1,0 +1,38 @@
+.payments-page {
+    padding: 30px;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+.payments-page h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+thead {
+    background: #0f172a;
+    color: white;
+}
+
+thead th {
+    padding: 16px;
+    text-align: left;
+}
+
+tbody td {
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+    background: #f9fafb;
+}

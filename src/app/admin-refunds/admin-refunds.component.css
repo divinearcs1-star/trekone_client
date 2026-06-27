@@ -1,0 +1,24 @@
+.refund-page {
+    padding: 30px;
+}
+
+.top-bar {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background: #111827;
+    color: white;
+}

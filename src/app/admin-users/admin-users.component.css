@@ -1,0 +1,102 @@
+.users-page {
+    padding: 30px;
+    background: #f6f8fb;
+    min-height: 100vh;
+}
+
+.users-page h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #1f2937;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+thead {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+}
+
+thead th {
+    padding: 18px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: 0.3s;
+}
+
+tbody tr:hover {
+    background: #f9fafb;
+}
+
+tbody td {
+    padding: 18px;
+    font-size: 14px;
+    color: #374151;
+}
+
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+button:first-child {
+    background: #2563eb;
+    color: white;
+}
+
+button:first-child:hover {
+    transform: translateY(-2px);
+}
+
+button:last-child {
+    background: #ef4444;
+    color: white;
+}
+
+button:last-child:hover {
+    transform: translateY(-2px);
+}
+
+.loading-box {
+    padding: 30px;
+    background: white;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 992px) {
+    .users-page {
+        padding: 20px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    thead th,
+    tbody td {
+        white-space: nowrap;
+    }
+}

@@ -1,0 +1,49 @@
+<div class="users-page">
+
+    <h1>User Management</h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Joined</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let user of users">
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.city }}</td>
+                <td>{{ user.role }}</td>
+
+                <td>
+                    {{ user.isBlocked ? 'Blocked' : 'Active' }}
+                </td>
+
+                <td>
+                    {{ user.createdAt | date:'mediumDate' }}
+                </td>
+
+                <td>
+                    <button *ngIf="user.role !== 'admin'" (click)="makeAdmin(user._id)">
+                        Make Admin
+                    </button>
+                    <button *ngIf="user.status === 'active'" (click)="blockUser(user._id)">
+                        Block
+                    </button>
+                    <button *ngIf="user.status === 'blocked'" (click)="unblockUser(user._id)">
+                        Unblock
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

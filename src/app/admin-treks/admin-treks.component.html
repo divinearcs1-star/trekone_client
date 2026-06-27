@@ -1,0 +1,78 @@
+<div class="treks-page">
+
+    <div class="top-bar">
+        <h1>Manage Treks</h1>
+        <button routerLink="/admin/add-trek" class="add-btn">
+            + Add Trek
+        </button>
+    </div>
+
+    <div *ngIf="loading">Loading...</div>
+
+    <div class="trek-grid">
+        <div class="trek-card" *ngFor="let trek of treks">
+
+            <img [src]="trek.images" alt="trek">
+
+            <div class="trek-content">
+                <h2>{{trek.eventname}}</h2>
+                <!-- <p>{{trek.eventTagline}}</p> -->
+
+                <div class="info">
+                    <span>{{trek.duration}}</span>
+                    <span>{{trek.difficulty}}</span>
+                </div>
+
+                <div class="seat-info">
+                    <div>
+                        <label>Total</label>
+                        <p>{{ trek.totalSeats }}</p>
+                    </div>
+
+                    <div>
+                        <label>Available</label>
+                        <p>{{ trek.availableSeats }}</p>
+                    </div>
+
+                    <div>
+                        <label>Booked</label>
+                        <p>{{ trek.totalSeats - trek.availableSeats }}</p>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="seat-btn" (click)="editSeats(trek)">
+                        Manage Seats
+                    </button>
+                    <button class="edit-btn" [routerLink]="['/admin/edit-trek', trek._id, trek.trekType]">
+                        Edit
+                    </button>
+                    <button class="delete-btn" (click)="deleteTrek(trek._id, trek.trekType)">
+                        Delete
+                    </button>
+                </div>
+                <div class="seat-modal" *ngIf="selectedTrek">
+
+                    <div class="seat-box">
+
+                        <h2>Manage Seats</h2>
+
+                        <p>{{ selectedTrek.eventname }}</p>
+
+                        <label>Total Seats</label>
+                        <input type="number" [(ngModel)]="seatForm.totalSeats">
+
+                        <div class="modal-actions">
+                            <button (click)="saveSeats()">Save</button>
+                            <button (click)="closeSeatModal()">Cancel</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

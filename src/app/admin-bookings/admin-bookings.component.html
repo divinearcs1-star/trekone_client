@@ -1,0 +1,52 @@
+
+<div class="bookings-page">
+
+    <div class="top-bar">
+        <h1>Manage Bookings</h1>
+    </div>
+
+    <div class="filters">
+        <input [(ngModel)]="searchText" (input)="filterBookings()" placeholder="Search by email or booking ID or Trek Name">
+
+        <select [(ngModel)]="statusFilter" (change)="filterBookings()">
+
+            <option value="">All</option>
+            <option value="Paid">Paid</option>
+            <option value="Refunded">Refunded</option>
+            <option value="Cancelled">Cancelled</option>
+            <option value="Pending">Pending</option>
+        </select>
+    </div>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Trek</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Booking Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let booking of filteredBookings">
+                <td>{{ booking.bookingid }}</td>
+                <td>{{ booking.customername }}</td>
+                <td>{{ booking.email }}</td>
+                <td>{{ booking.eventname }}</td>
+                <td>{{ booking.eventdate }}</td>
+                <td>₹{{ booking.amount }}</td>
+                <td>{{ booking.paymentstatus }}</td>
+                <td>{{ booking.bookingstatus }}</td>
+                <td>{{ booking.bookingdate | date:'yyyy-MM-dd' }}</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

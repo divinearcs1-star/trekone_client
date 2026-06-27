@@ -1,0 +1,39 @@
+<div class="refund-page">
+
+    <div class="top-bar">
+        <h1>Refund Requests</h1>
+    </div>
+
+    <div *ngIf="loading">
+        Loading refunds...
+    </div>
+
+    <table *ngIf="!loading">
+
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Refund ID</th>
+                <th>Amount</th>
+                <th>Trek</th>
+                <th>Refund Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let refund of refunds">
+                <td>{{ refund.bookingid }}</td>
+                <td>{{ refund.customername }}</td>
+                <td>{{ refund.email }}</td>
+                <td>{{ refund.refundid }}</td>
+                <td>₹{{ refund.amount }}</td>
+                <td>{{ refund.eventname }}</td>
+                <td>{{ refund.refunddate | date:'medium' }}</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>

@@ -88,4 +88,23 @@ export class AuthService {
         }
       });
   }
+
+  getAllUsers() {
+    return this.http.get(
+      `${environment.apiUrl}/admin/all-users`
+    );
+  }
+
+  toggleUserBlock(id: string) {
+    return this.http.put(
+      `${environment.apiUrl}/admin/toggle-user-block/${id}`,
+      {}
+    );
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete(
+      `${environment.apiUrl}/admin/delete-user/${id}`
+    );
+  }
 }

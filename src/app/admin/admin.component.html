@@ -1,1 +1,87 @@
-<p>admin works!</p>
+<div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-box">
+            <h2>TrekOne</h2>
+            <p>Admin Panel</p>
+        </div>
+        <ul class="menu">
+            <li class="active">Dashboard</li>
+            <li routerLink="/admin/bookings">Bookings</li>
+            <li routerLink="/admin/treks">Treks</li>
+            <li routerLink="/admin/users">Users</li>
+            <li routerLink="/admin/refunds">Refund Requests</li>
+            <li routerLink="/admin/payments" routerLinkActive="active">Payments</li>
+        </ul>
+    </aside>
+    <!-- Main -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div>
+                <h1>Dashboard Overview</h1>
+                <p>Manage your trekking operations efficiently</p>
+            </div>
+        </div>
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Bookings</h3>
+                <h2>{{stats.totalBookings}}</h2>
+            </div>
+            <div class="stat-card">
+                <h3>Active Treks</h3>
+                <h2>{{stats.activeTreks}}</h2>
+            </div>
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <h2>{{stats.totalUsers}}</h2>
+            </div>
+            <div class="stat-card">
+                <h3>Total Revenue</h3>
+                <h2>₹{{stats.totalRevenue}}</h2>
+            </div>
+            <div class="stat-card">
+                <h3>Total Refunds</h3>
+                <h2>{{stats.totalRefunds}}</h2>
+            </div>
+            <div class="stat-card">
+                <h3>Upcoming Treks</h3>
+                <h2>{{stats.upcomingTreks}}</h2>
+            </div>
+        </div>
+        <!-- Booking Table -->
+        <div class="section-box">
+            <div class="section-title">
+                <h2>Recent Bookings</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Booking Date</th>
+                        <th>Customer</th>
+                        <th>Trek</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let booking of bookings">
+                        <td>{{booking.bookingid}}</td>
+                        <!-- <td>{{booking.bookingdate | date:'dd-MMM-yyyy hh:mm:ss a'}}</td> -->
+                        <td>{{booking.bookingdate | date:'dd-MMM-yyyy hh:mm:ss'}}</td>
+                        <td>{{booking.customername}}</td>
+                        <td>{{booking.eventname}}</td>
+                        <td>{{booking.eventdate}}</td>
+                        <td>₹{{booking.amount}}</td>
+                        <td>
+                            <span class="status paid">{{booking.paymentstatus}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>

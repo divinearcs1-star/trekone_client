@@ -19,19 +19,18 @@ export class AddTrekComponent {
     difficulty: '',
     altitude: '',
     guide: '',
-    images: '',
+    coverImage: '',
     availableSeats: '',
     totalSeats: '',
-    departurefrom: '',
-    trekfrom: '',
-    trekroute: '',
+    departureFrom: '',
+    trekFrom: '',
+    trekRoute: '',
     trektime: '',
     specialEvent: false
   };
 
   isEditMode = false;
   trekId = '';
-  trekType = '';
 
   constructor(
     private adminService: AdminService,
@@ -42,14 +41,12 @@ export class AddTrekComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-      const type = params.get('type');
 
-      if (id && type) {
+      if (id) {
         this.isEditMode = true;
         this.trekId = id;
-        this.trekType = type;
 
-        this.adminService.getTrekById(id, type).subscribe({
+        this.adminService.getTrekById(id).subscribe({
           next: (res: any) => {
             this.trekData = res;
           },
@@ -61,24 +58,11 @@ export class AddTrekComponent {
     });
   }
 
-  // saveTrek() {
-  //   this.adminService.addTrek(this.trekData).subscribe({
-  //     next: (res: any) => {
-  //       console.log(res);
-  //       this.router.navigate(['/admin/treks']);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     }
-  //   });
-  // }
-
   saveTrek() {
 
     if (this.isEditMode) {
       this.adminService.updateTrek(
         this.trekId,
-        this.trekType,
         this.trekData
       ).subscribe({
         next: (res: any) => {

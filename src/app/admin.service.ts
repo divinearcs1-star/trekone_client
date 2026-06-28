@@ -36,22 +36,22 @@ export class AdminService {
     return this.http.post(`${this.baseUrl}/add-trek`, data);
   }
 
-  getTrekById(id: string, type: string) {
+  getTrekById(id: string) {
     return this.http.get(
-      `${this.baseUrl}/trek/${id}/${type}`
+      `${this.baseUrl}/trek/${id}`
     );
   }
 
-  updateTrek(id: string, type: string, data: any) {
+  updateTrek(id: string, data: any) {
     return this.http.put(
-      `${this.baseUrl}/update-trek/${id}/${type}`,
+      `${this.baseUrl}/update-trek/${id}`,
       data
     );
   }
 
-  deleteTrek(id: string, type: string) {
+  deleteTrek(id: string) {
     return this.http.delete(
-      `${this.baseUrl}/delete-trek/${id}/${type}`
+      `${this.baseUrl}/delete-trek/${id}`
     );
   }
 

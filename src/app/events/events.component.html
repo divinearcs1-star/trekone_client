@@ -9,7 +9,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 mb-4" *ngFor="let event of allevents">
                     <div class="trek-card">
                         <div class="trek-image">
-                            <img [src]="event.images || '/assets/images/default-trek.jpg'" alt="">
+                            <img [src]="event.coverImage || '/assets/images/default-trek.jpg'" alt="">
                             <div class="difficulty-badge">
                                 {{event.difficulty}}
                             </div>
@@ -31,7 +31,7 @@
                             <div class="trek-info">
                                 <span>
                                     📍
-                                    {{event.trekfrom}}
+                                    {{event.trekFrom}}
                                 </span>
                             </div>
                             <div class="trek-footer">

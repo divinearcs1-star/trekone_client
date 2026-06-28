@@ -30,7 +30,7 @@ export class TrekDetailsComponent implements OnInit {
 
       // console.log('event =>', this.event);
       this.trek = this.event;
-      this.trekImages = this.event.imagearray || [];
+      this.trekImages = this.event.images || [];
       // console.log('trekImages =>', this.trekImages);
       if (this.trekImages.length > 1) {
         this.startSlider();
@@ -77,7 +77,7 @@ export class TrekDetailsComponent implements OnInit {
     } else { 
       this.toastr.success("Bookings are Open");
       this.router.navigate([
-        '/admission', this.event.eventname, this.event.fees, this.validDates.join(','), this.event.picklocation.join(',')
+        '/admission', this.event.eventname,this.event._id, this.event.fees, this.validDates.join(','), this.event.pickupLocation.join(',')
       ]);
     }
   }

@@ -12,7 +12,7 @@
     <div class="trek-grid">
         <div class="trek-card" *ngFor="let trek of treks">
 
-            <img [src]="trek.images" alt="trek">
+            <img [src]="trek.coverImage" alt="trek">
 
             <div class="trek-content">
                 <h2>{{trek.eventname}}</h2>
@@ -44,10 +44,10 @@
                     <button class="seat-btn" (click)="editSeats(trek)">
                         Manage Seats
                     </button>
-                    <button class="edit-btn" [routerLink]="['/admin/edit-trek', trek._id, trek.trekType]">
+                    <button class="edit-btn" [routerLink]="['/admin/edit-trek', trek._id]">
                         Edit
                     </button>
-                    <button class="delete-btn" (click)="deleteTrek(trek._id, trek.trekType)">
+                    <button class="delete-btn" (click)="deleteTrek(trek._id)">
                         Delete
                     </button>
                 </div>

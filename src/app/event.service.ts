@@ -10,7 +10,7 @@ export class EventService {
   eventsUrl = `${environment.apiUrl}` + '/trek/allTrek'
   filtereventsUrl = `${environment.apiUrl}` + '/trek/filterTrek'
   specialeventsUrl = `${environment.apiUrl}` + '/trek/specialTrek'
-  bookingsUrl = `${environment.apiUrl}` + '/booking/mybookings/'
+  bookingsUrl = `${environment.apiUrl}` + '/booking/mybookings'
   cancelBookingUrl = `${environment.apiUrl}` + '/booking/cancel-booking'
   cancelAndRefundUrl = `${environment.apiUrl}` + '/payment/cancel-refund'
 
@@ -29,12 +29,8 @@ export class EventService {
     return this.http.get<any>(this.specialeventsUrl);
   }
 
-  getBookings(email: any) {
-    return this.http.get<any>(this.bookingsUrl + email);
-  }
-
-  getReceipt(userdata: any) {
-    return this.http.get<any>(this.bookingsUrl + userdata);
+  getBookings() {
+    return this.http.get<any>(this.bookingsUrl);
   }
 
   cancelBooking(bookingid: any) {

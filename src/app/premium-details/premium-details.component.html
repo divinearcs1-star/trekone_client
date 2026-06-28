@@ -69,7 +69,7 @@
                     Major Attractions
                 </h2>
                 <div class="highlight-grid">
-                    <div class="highlight-card" *ngFor="let item of event.attraction">
+                    <div class="highlight-card" *ngFor="let item of event.majorAttraction">
                         ⭐ {{item}}
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                 </h2>
                 <div class="timeline">
                     <div class="timeline-step">
-                        🚍 Departure From {{event.departurefrom}}
+                        🚍 Departure From {{event.departureFrom}}
                     </div>
                     <div class="timeline-step">
                         ☕ Refreshment Break
@@ -140,11 +140,11 @@
                 <!-- <p>📅 {{event.eventdate[0] | date:'dd MMM yyyy'}}</p> -->
                 <div *ngFor="let bookdate of validDates">
                         📅 {{bookdate | date:'dd MMM yyyy'}}
-                        <span> {{ bookdate === 'Not available' ? 'No Upcoming Dates' : ' (' + event.trektime + ' )' }}
+                        <span> {{ bookdate === 'Not available' ? 'No Upcoming Dates' : ' (' + event.difficulty + ' )' }}
                         </span>
                 </div>
 
-                <p>📍 {{event.trekfrom}}</p>
+                <p>📍 {{event.trekFrom}}</p>
                 <p>🔥 {{event.difficulty}}</p>
                 <p>👥 {{event.availableSeats}} Seats Left</p>
                 <button class="premium-book-btn" (click)="booknow()">

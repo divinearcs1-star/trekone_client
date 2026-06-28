@@ -35,17 +35,17 @@ export class AdminTreksComponent {
     });
   }
 
-  deleteTrek(id: string, type: string) {
+  deleteTrek(id: string) {
     const confirmDelete = confirm('Are you sure you want to delete this trek?');
 
     if (!confirmDelete) return;
 
-    this.adminService.deleteTrek(id, type).subscribe({
+    this.adminService.deleteTrek(id).subscribe({
       next: (res: any) => {
         console.log(res);
 
         this.treks = this.treks.filter(
-          trek => !(trek._id === id && trek.trekType === type)
+          trek => !(trek._id === id)
         );
       },
       error: (err) => {

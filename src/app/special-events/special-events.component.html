@@ -22,7 +22,7 @@
             [class.reverse]="i % 2 !== 0">
             <div class="image-side">
                 <img
-                    [src]="event.images || '/assets/images/default-trek.webp'"
+                    [src]="event.coverImage || '/assets/images/default-trek.webp'"
                     alt="">
                 <div class="floating-badge">
                     {{event.difficulty}}
@@ -56,7 +56,7 @@
                     </div>
                     <div>
                         📍
-                        {{event.trekfrom}}
+                        {{event.trekFrom}}
                     </div>
                 </div>
                 <p class="description">

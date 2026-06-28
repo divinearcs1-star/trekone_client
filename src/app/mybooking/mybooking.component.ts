@@ -30,7 +30,7 @@ export class MybookingComponent implements OnInit {
   }
 
   getBookingData() {
-    this.eventService.getBookings(this.email).subscribe({
+    this.eventService.getBookings().subscribe({
       next: (res: any) => {
         this.bookings = res;
         this.loading = false;

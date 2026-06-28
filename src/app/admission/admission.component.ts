@@ -14,6 +14,7 @@ export class AdmissionComponent implements OnInit {
 
   submitted = false;
   eventname = ""
+  _id = ""
   fees = ""
   eventdatearray: string []=[]
   pickuparray: string []=[]
@@ -30,6 +31,7 @@ export class AdmissionComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.eventname = params.get('name') || '';
+      this._id = params.get('id') || '';
       this.fees = params.get('fees') || '';
       this.eventdatearray = (params.get('bookdate') || '').split(',');
       this.pickuparray = (params.get('pickup') || '').split(',');
@@ -88,7 +90,8 @@ export class AdmissionComponent implements OnInit {
       address: this.MForm.get('address')?.value,
       terms: this.MForm.get('terms')?.value,
       city: this.MForm.get('city')?.value,
-      pickuplocation: this.MForm.get('pickuplocation')?.value
+      pickuplocation: this.MForm.get('pickuplocation')?.value,
+      trekId : this._id
     }
 
     this.router.navigate(['/review'], { state: { bookingData: this.bookingData } });

@@ -76,7 +76,7 @@ const routes: Routes = [
    ,canActivate: [adminGuard]
 },
   { path: 'login', component: LoginComponent },
-  { path: 'admission/:name/:fees/:bookdate/:pickup', component: AdmissionComponent },
+  { path: 'admission/:name/:id/:fees/:bookdate/:pickup', component: AdmissionComponent },
   { path: 'greeting', component: GreetingComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'trek-details/:eventname', component: TrekDetailsComponent },
@@ -86,7 +86,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },
   { path: 'terms-and-conditions', component: TermsComponent },
-  { path: 'mybooking/:email', component: MybookingComponent },
+  { path: 'mybooking', component: MybookingComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 

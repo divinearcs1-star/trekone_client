@@ -54,7 +54,7 @@
             </div>
             <div class="premium-card">
                 <h3>Major Attractions</h3>
-                <ul *ngFor="let attraction of event.attraction" class="attractionmatch">
+                <ul *ngFor="let attraction of event.majorAttraction" class="attractionmatch">
                     <li>{{attraction}}</li>
                 </ul>
             </div>
@@ -62,7 +62,7 @@
                 <h3>Itinerary</h3>
                 <div class="timeline">
                     <div class="timeline-item">
-                        🚌 Departure From {{event.departurefrom}}
+                        🚌 Departure From {{event.departureFrom}}
                     </div>
                     <div class="timeline-item">
                         ☕ Tea Break
@@ -102,11 +102,11 @@
                 <div *ngFor="let bookdate of validDates">
                     <p>
                         📅 {{bookdate | date:'dd MMM yyyy'}}
-                        <span> {{ bookdate === 'Not available' ? 'No Upcoming Dates' : ' (' + event.trektime + ' )' }}
+                        <span> {{ bookdate === 'Not available' ? 'No Upcoming Dates' : ' (' + event.difficulty + ' )' }}
                         </span>
                 </div>
                 <p>
-                    📍 {{event.trekfrom}}
+                    📍 {{event.trekFrom}}
                 </p>
                 <p>
                     ⛰ {{event.difficulty}}

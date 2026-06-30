@@ -7,13 +7,11 @@ import { AdminService } from '../admin.service';
   styleUrl: './admin-treks.component.css'
 })
 export class AdminTreksComponent {
+
   treks: any[] = [];
   loading = true;
 
   selectedTrek: any = null;
-  seatForm = {
-    totalSeats: 0
-  };
 
   constructor(private adminService: AdminService) { }
 
@@ -25,7 +23,6 @@ export class AdminTreksComponent {
     this.adminService.getTreks().subscribe({
       next: (res: any) => {
         this.treks = res;
-        console.log(this.treks);
         this.loading = false;
       },
       error: (err) => {
@@ -41,11 +38,9 @@ export class AdminTreksComponent {
     if (!confirmDelete) return;
 
     this.adminService.deleteTrek(id).subscribe({
-      next: (res: any) => {
-        console.log(res);
-
+      next: () => {
         this.treks = this.treks.filter(
-          trek => !(trek._id === id)
+          trek => trek._id !== id
         );
       },
       error: (err) => {
@@ -55,8 +50,7 @@ export class AdminTreksComponent {
   }
 
   editSeats(trek: any) {
-    this.selectedTrek = trek;
-    this.seatForm.totalSeats = trek.totalSeats;
+    this.selectedTrek = JSON.parse(JSON.stringify(trek));
   }
 
   closeSeatModal() {
@@ -64,9 +58,20 @@ export class AdminTreksComponent {
   }
 
   saveSeats() {
-    this.adminService.updateSeats(
+    for (let batch of this.selectedTrek.batches) {
+      if (batch.availableSeats > batch.totalSeats) {
+        alert(`${batch.batchId}: Available seats cannot exceed total seats`);
+        return;
+      }
+
+      if (batch.availableSeats < 0 || batch.totalSeats < 0) {
+        alert(`${batch.batchId}: Seats cannot be negative`);
+        return;
+      }
+    }
+    this.adminService.updateTrek(
       this.selectedTrek._id,
-      this.seatForm
+      this.selectedTrek
     ).subscribe({
       next: () => {
         this.loadTreks();
@@ -76,5 +81,23 @@ export class AdminTreksComponent {
         console.log(err);
       }
     });
+  }
+
+  getTotalSeats(trek: any) {
+    return trek.batches.reduce(
+      (sum: number, batch: any) => sum + batch.totalSeats,
+      0
+    );
+  }
+
+  getAvailableSeats(trek: any) {
+    return trek.batches.reduce(
+      (sum: number, batch: any) => sum + batch.availableSeats,
+      0
+    );
+  }
+
+  getBookedSeats(trek: any) {
+    return this.getTotalSeats(trek) - this.getAvailableSeats(trek);
   }
 }

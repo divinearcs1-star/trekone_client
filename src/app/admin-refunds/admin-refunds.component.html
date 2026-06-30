@@ -7,33 +7,35 @@
     <div *ngIf="loading">
         Loading refunds...
     </div>
-
     <table *ngIf="!loading">
-
         <thead>
             <tr>
                 <th>Booking ID</th>
                 <th>Customer</th>
-                <th>Email</th>
-                <th>Refund ID</th>
-                <th>Amount</th>
                 <th>Trek</th>
-                <th>Refund Date</th>
+                <th>Trek Date</th>
+                <th>Amount</th>
+                <th>Email</th>
+                <th>Actions</th>
             </tr>
         </thead>
-
         <tbody>
             <tr *ngFor="let refund of refunds">
                 <td>{{ refund.bookingid }}</td>
                 <td>{{ refund.customername }}</td>
-                <td>{{ refund.email }}</td>
-                <td>{{ refund.refundid }}</td>
-                <td>₹{{ refund.amount }}</td>
                 <td>{{ refund.eventname }}</td>
-                <td>{{ refund.refunddate | date:'medium' }}</td>
+                <td>{{ refund.eventdate |date:'dd-MMM-yyyy' }}</td>
+                <td>₹{{ refund.amount }}</td>
+                <td>{{ refund.email }}</td>
+                <td>
+                    <button (click)="approveRefund(refund.bookingid)">
+                        Approve Refund
+                    </button>
+                    <button  (click)="rejectRefund(refund.bookingid)">
+                        Reject Refund
+                    </button>
+                </td>
             </tr>
         </tbody>
-
     </table>
-
 </div>

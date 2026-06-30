@@ -117,7 +117,7 @@
                     <div class="glass-card">
                         <h3>Things To Carry</h3>
                         <ul>
-                            <li *ngFor="let item of event.thingstocarry">
+                            <li *ngFor="let item of event.thingsToCarry">
                                 🎒 {{item}}
                             </li>
                         </ul>
@@ -131,24 +131,29 @@
                     LIMITED SLOTS
                 </span>
                 <div class="price">
-                    ₹{{event.fees}}
+                    ₹ {{selectedBatch?.fees}}
                 </div>
                 <div class="per-person">
                     Per Person
                 </div>
                 <hr>
-                <!-- <p>📅 {{event.eventdate[0] | date:'dd MMM yyyy'}}</p> -->
-                <div *ngFor="let bookdate of validDates">
+                <!-- <div *ngFor="let bookdate of validDates">
                         📅 {{bookdate | date:'dd MMM yyyy'}}
                         <span> {{ bookdate === 'Not available' ? 'No Upcoming Dates' : ' (' + event.difficulty + ' )' }}
                         </span>
-                </div>
+                </div> -->
+                <select class="batch-select" *ngIf="sortedEvent?.batches?.length > 0" [(ngModel)]="selectedBatch">
+                    <option *ngFor="let batch of sortedEvent.batches; let i=index" [ngValue]="batch">
+                        📅 Batch {{ i + 1 }} - {{ batch.eventDate | date:'dd-MMM-yyyy' }}
+                    </option>
+                </select>
 
                 <p>📍 {{event.trekFrom}}</p>
                 <p>🔥 {{event.difficulty}}</p>
-                <p>👥 {{event.availableSeats}} Seats Left</p>
-                <button class="premium-book-btn" (click)="booknow()">
-                    <!-- [routerLink]="['/admission', event.eventname,event.fees]" -->
+                <p>👥 {{selectedBatch?.availableSeats}} Seats Left</p>
+                <span *ngIf="selectedBatch?.availableSeats <= 0" style="color: red"> Batch Full </span>
+                <button [disabled]="selectedBatch?.availableSeats <= 0 && sortedEvent?.batches?.length > 0"
+                    class="premium-book-btn" (click)="booknow()">
                     Reserve Expedition
                 </button>
                 <div class="trust-box">

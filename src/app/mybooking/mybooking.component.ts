@@ -16,7 +16,6 @@ export class MybookingComponent implements OnInit {
   loading = true;
   bookingData: any;
   email = ""
-  // email = "divinearcs1@gmail.com";
 
   constructor(private eventService: EventService, private toastr: ToastrService, private route: ActivatedRoute) { }
 
@@ -25,7 +24,6 @@ export class MybookingComponent implements OnInit {
       this.email = params.get('email') || '';
       console.log("email:", this.email)
       this.getBookingData();
-      // this.bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
     });
   }
 
@@ -42,72 +40,17 @@ export class MybookingComponent implements OnInit {
     });
   }
 
-  isRefundEligible(booking: any): boolean {
-
-    const trekDate = new Date(booking.eventdate);
-    const now = new Date();
-
-    const diffInMs = trekDate.getTime() - now.getTime();
-    const diffInHours = diffInMs / (1000 * 60 * 60);
-
-    return (
-      trekDate > now &&                  // trek in future
-      diffInHours >= 48 &&               // minimum 48 hours
-      booking.paymentstatus === 'Paid' &&
-      booking.refundstatus !== 'Refunded' &&
-      booking.bookingstatus !== 'Cancelled'
-    );
-  }
-
   cancelBooking(bookingid: string) {
 
-    this.eventService.cancelBooking(bookingid).subscribe({
+    this.eventService.cancelRefund(bookingid).subscribe({
       next: (res: any) => {
         console.log(res);
-
         const booking = this.bookings.find(
           x => x.bookingid === bookingid
         );
-
         if (booking) {
           booking.bookingstatus = "Cancelled";
         }
-        if (res.success == false) {
-          this.toastr.warning(res.message);
-        }
-        else {
-          this.toastr.success(res.message);
-        }
-      },
-      error: (err) => {
-        console.log(err);
-        this.toastr.error(err.error.message);
-      }
-    });
-  }
-
-  // canCancelBooking(booking: any): boolean {
-  //   return (
-  //     booking.bookingstatus !== 'Cancelled' &&
-  //     booking.refundstatus !== 'Refunded'
-  //   );
-  // }
-
-  cancelAndRefund(booking: any) {
-
-    const payload = {
-      bookingid: booking.bookingid,
-      paymentid: booking.paymentid,
-      amount: booking.amount
-    };
-
-    console.log('Refund request:', payload);
-
-    this.eventService.cancelAndRefund(payload).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        booking.paymentstatus = "Refunded";
-        booking.refundstatus = "Refunded";
         if (res.success == false) {
           this.toastr.warning(res.message);
         }

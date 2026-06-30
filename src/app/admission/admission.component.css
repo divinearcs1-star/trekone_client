@@ -77,13 +77,19 @@ label {
 
 .booking-grid {
     display: grid;
-    grid-template-columns: 1fr 250px;
-    gap: 25px;
-    align-items: center;
+    grid-template-columns: 2fr 1.5fr 1fr;
+    gap: 20px;
+    align-items: start;
 }
 
-.pickloc{
-    width: 325px;
+.pickloc {
+    width: 75%;
+}
+
+.person-box,
+.amount-box {
+    width: 75%;
+    margin-left: -100px;
 }
 
 .person-counter {

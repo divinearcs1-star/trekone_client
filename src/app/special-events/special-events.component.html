@@ -44,7 +44,7 @@
                 <div class="info-grid">
                     <div>
                         📅
-                        {{event.eventdate[0] | date:'dd MMM yyyy'}}
+                        {{event.batches[0].eventDate | date:'dd MMM yyyy'}}
                     </div>
                     <div>
                         ⏱️
@@ -65,7 +65,7 @@
                 <div class="footer-row">
                     <div>
                         <span class="price">
-                            ₹{{event.fees}}
+                            ₹{{event.batches[0].fees}}
                         </span>
                         <span class="person">
                             / Person
@@ -73,7 +73,7 @@
                     </div>
                     <button
                         class="explore-btn"
-                        [routerLink]="['/premium-details', event.eventname]">
+                        [routerLink]="['/premium-details', event._id]">
                         Explore Expedition
                     </button>
                 </div>

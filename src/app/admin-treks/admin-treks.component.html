@@ -1,45 +1,30 @@
 <div class="treks-page">
-
     <div class="top-bar">
         <h1>Manage Treks</h1>
         <button routerLink="/admin/add-trek" class="add-btn">
             + Add Trek
         </button>
     </div>
-
     <div *ngIf="loading">Loading...</div>
-
     <div class="trek-grid">
         <div class="trek-card" *ngFor="let trek of treks">
-
             <img [src]="trek.coverImage" alt="trek">
-
             <div class="trek-content">
                 <h2>{{trek.eventname}}</h2>
-                <!-- <p>{{trek.eventTagline}}</p> -->
-
                 <div class="info">
                     <span>{{trek.duration}}</span>
                     <span>{{trek.difficulty}}</span>
                 </div>
-
                 <div class="seat-info">
-                    <div>
-                        <label>Total</label>
-                        <p>{{ trek.totalSeats }}</p>
-                    </div>
-
-                    <div>
-                        <label>Available</label>
-                        <p>{{ trek.availableSeats }}</p>
-                    </div>
-
-                    <div>
-                        <label>Booked</label>
-                        <p>{{ trek.totalSeats - trek.availableSeats }}</p>
+                    <div *ngFor="let batch of trek.batches" class="batch-seat-card">
+                        <h4>{{ batch.batchId }}</h4>
+                        <p><strong>Date:</strong> {{ batch.eventDate | date:'dd MMM yyyy' }}</p>
+                        <p><strong>Total:</strong> {{ batch.totalSeats }}</p>
+                        <p><strong>Available:</strong> {{ batch.availableSeats }}</p>
+                        <p><strong>Booked:</strong> {{ batch.totalSeats - batch.availableSeats }}</p>
+                        <p><strong>Status:</strong> {{ batch.status }}</p>
                     </div>
                 </div>
-
                 <div class="actions">
                     <button class="seat-btn" (click)="editSeats(trek)">
                         Manage Seats
@@ -51,28 +36,25 @@
                         Delete
                     </button>
                 </div>
-                <div class="seat-modal" *ngIf="selectedTrek">
-
-                    <div class="seat-box">
-
-                        <h2>Manage Seats</h2>
-
-                        <p>{{ selectedTrek.eventname }}</p>
-
-                        <label>Total Seats</label>
-                        <input type="number" [(ngModel)]="seatForm.totalSeats">
-
-                        <div class="modal-actions">
-                            <button (click)="saveSeats()">Save</button>
-                            <button (click)="closeSeatModal()">Cancel</button>
-                        </div>
-
-                    </div>
-
-                </div>
-
             </div>
-
+        </div>
+    </div> <!-- trek-grid ends -->
+    <!-- Modal OUTSIDE loop -->
+    <div class="seat-modal" *ngIf="selectedTrek">
+        <div class="seat-box">
+            <h2>Manage Batch Seats</h2>
+            <p>{{ selectedTrek.eventname }}</p>
+            <div *ngFor="let batch of selectedTrek.batches" class="batch-box">
+                <h4>{{ batch.batchId }}</h4>
+                <label>Total Seats</label>
+                <input type="number" [(ngModel)]="batch.totalSeats">
+                <label>Available Seats</label>
+                <input type="number" [(ngModel)]="batch.availableSeats">
+            </div>
+            <div class="modal-actions">
+                <button (click)="saveSeats()">Save</button>
+                <button (click)="closeSeatModal()">Cancel</button>
+            </div>
         </div>
     </div>
 </div>

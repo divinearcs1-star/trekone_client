@@ -11,8 +11,7 @@ export class EventService {
   filtereventsUrl = `${environment.apiUrl}` + '/trek/filterTrek'
   specialeventsUrl = `${environment.apiUrl}` + '/trek/specialTrek'
   bookingsUrl = `${environment.apiUrl}` + '/booking/mybookings'
-  cancelBookingUrl = `${environment.apiUrl}` + '/booking/cancel-booking'
-  cancelAndRefundUrl = `${environment.apiUrl}` + '/payment/cancel-refund'
+  cancelRefundUrl = `${environment.apiUrl}` + '/booking/cancel-refund'
 
   constructor(private http: HttpClient) {
   }
@@ -33,37 +32,33 @@ export class EventService {
     return this.http.get<any>(this.bookingsUrl);
   }
 
-  cancelBooking(bookingid: any) {
-    return this.http.post<any>(this.cancelBookingUrl, { bookingid });
-  }
-
-  cancelAndRefund(payload: any) {
-    return this.http.post<any>(this.cancelAndRefundUrl, payload);
-  }
-
-  getTrekById(id: string, type: string) {
-    return this.http.get(
-      `${environment.apiUrl}/admin/trek/${id}/${type}`
-    );
-  }
-
-  updateTrek(id: string, type: string, trekData: any) {
-    return this.http.put(
-      `${environment.apiUrl}/admin/update-trek/${id}/${type}`,
-      trekData
-    );
-  }
-
-  deleteTrek(id: string, type: string) {
-    return this.http.delete(
-      `${environment.apiUrl}/admin/delete-trek/${id}/${type}`
-    );
+  cancelRefund(bookingid: any) {
+    return this.http.post<any>(this.cancelRefundUrl, { bookingid });
   }
 
   getAllBookings() {
-      return this.http.get(
-        `${environment.apiUrl}/admin/all-bookings`
-      );
-    }
+    return this.http.get(
+      `${environment.apiUrl}/admin/all-bookings`
+    );
+  }
+
+  // getTrekById(id: string, type: string) {
+  //   return this.http.get(
+  //     `${environment.apiUrl}/admin/trek/${id}/${type}`
+  //   );
+  // }
+
+  // updateTrek(id: string, type: string, trekData: any) {
+  //   return this.http.put(
+  //     `${environment.apiUrl}/admin/update-trek/${id}/${type}`,
+  //     trekData
+  //   );
+  // }
+
+  // deleteTrek(id: string, type: string) {
+  //   return this.http.delete(
+  //     `${environment.apiUrl}/admin/delete-trek/${id}/${type}`
+  //   );
+  // }
 
 }

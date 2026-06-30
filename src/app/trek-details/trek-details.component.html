@@ -1,22 +1,3 @@
-<!-- <div class="hero-banner">
-    <img [src]="event.images" class="banner-image" alt="trek">
-    <div class="banner-overlay">
-        <div class="container">
-            <span *ngIf="event.popular" class="badge-premium">
-                ⭐ Most Popular
-            </span>
-            <h1>
-                {{event.eventname}}
-            </h1>
-            <h3 *ngIf="event.subtitlevisible" style="color: white;">
-                {{event.eventTag}}
-            </h3>
-            <p>
-                {{event.eventTagline}}
-            </p>
-        </div>
-    </div>
-</div> -->
 <div class="trek-hero" *ngIf="trekImages.length > 0">
     <div class="hero-slide" [style.background-image]="'url(' + trekImages[currentImageIndex] + ')'">
         <div class="hero-overlay"></div>
@@ -89,7 +70,7 @@
             </div>
             <div class="premium-card">
                 <h3>Things To Carry</h3>
-                <ul *ngFor="let things of event.thingstocarry" class="thingsmatch">
+                <ul *ngFor="let things of event.thingsToCarry" class="thingsmatch">
                     <li>{{things}}</li>
                 </ul>
             </div>
@@ -99,31 +80,36 @@
             <div class="booking-card">
                 <h4>Quick Info</h4>
                 <hr>
-                <div *ngFor="let bookdate of validDates">
+
+                <div>
                     <p>
-                        📅 {{bookdate | date:'dd MMM yyyy'}}
-                        <span> {{ bookdate === 'Not available' ? 'No Upcoming Dates' : ' (' + event.difficulty + ' )' }}
-                        </span>
-                </div>
-                <p>
-                    📍 {{event.trekFrom}}
-                </p>
-                <p>
-                    ⛰ {{event.difficulty}}
-                </p>
-                <p>
-                    👥 {{event.availableSeats}} Seats Left
-                </p>
-                <div class="containerperson">
-                    <div class="price">
-                        ₹ {{event.fees}}
+                        <select class="batch-select" *ngIf="sortedEvent?.batches?.length > 0"
+                            [(ngModel)]="selectedBatch">
+                            <option *ngFor="let batch of sortedEvent.batches; let i=index" [ngValue]="batch">
+                                📅 Batch {{ i + 1 }} - {{ batch.eventDate | date:'dd-MMM-yyyy' }}
+                            </option>
+                        </select>
+                    <p>
+                        📍 {{event.trekFrom}}
+                    </p>
+                    <p>
+                        ⛰ {{event.difficulty}}
+                    </p>
+                    <p>
+                        👥 {{selectedBatch?.availableSeats}} Seats Left
+                    </p>
+                    <span *ngIf="selectedBatch?.availableSeats <= 0" style="color: red"> Batch Full </span>
+                    <div class="containerperson">
+                        <div class="price">
+                            ₹ {{selectedBatch?.fees}}
+                        </div>
+                        <strong class="persondata"> / Person </strong>
                     </div>
-                    <strong class="persondata"> / Person </strong>
+                    <button [disabled]="selectedBatch?.availableSeats <= 0 && sortedEvent?.batches?.length > 0"
+                        class="btn book-btn" (click)="booknow()">
+                        Book Now
+                    </button>
                 </div>
-                <!-- <button class="btn book-btn" [routerLink]="['/admission', event.eventname,event.fees,event.eventdate.join(','),event.picklocation.join(',')]"> -->
-                <button class="btn book-btn" (click)="booknow()">
-                    Book Now
-                </button>
                 <div class="trust-box">
                     ✔ Secure Booking
                     <br>

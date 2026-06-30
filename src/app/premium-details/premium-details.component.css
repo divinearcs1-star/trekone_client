@@ -157,6 +157,51 @@
     margin-top: 25px;
     line-height: 2;
 }
+
+
+
+.batch-select {
+    width: 100%;
+    margin: 18px 0;
+    padding: 14px 18px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 14px;
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(12px);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.batch-select:hover {
+    border-color: #fbbf24;
+    background: rgba(255,255,255,.08);
+}
+
+.batch-select:focus {
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251,191,36,.18);
+}
+
+.batch-select option {
+    background: #0f172a;
+    color: white;
+    padding: 12px;
+}
+
+.batch-select::-ms-expand {
+    display: none;
+}
+.booking-panel p {
+    margin-bottom: 12px;
+    color: #e2e8f0;
+    font-size: 15px;
+}
+
+
 @media(max-width:991px){
     .hero-content h1{
         font-size:3rem;
@@ -170,3 +215,5 @@
         margin-top:30px;
     }
 }
+
+

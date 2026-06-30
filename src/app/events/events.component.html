@@ -21,7 +21,7 @@
                             <div class="trek-info">
                                 <span>
                                     📅
-                                    {{event.eventdate[0] | date:'dd MMM yyyy'}}
+                                    {{event.batches[0].eventDate | date:'dd MMM yyyy'}}
                                 </span>
                                 <span>
                                     ⏱️
@@ -36,17 +36,16 @@
                             </div>
                             <div class="trek-footer">
                                 <div class="price">
-                                    ₹ {{event.fees}}
+                                    ₹ {{event.batches[0].fees}}
                                 </div>
-                                <div class="seats">
-                                    {{event.availableSeats}}
-                                    Seats Left
+                                <div *ngIf="event.batches[0].availableSeats > 10" class="seats">
+                                    {{event.batches[0].availableSeats}} Seats Left
                                 </div>
-                                <span *ngIf="event.availableSeats <= 10" class="text-danger fw-bold">
+                                <span *ngIf="event.batches[0].availableSeats <= 10" class="text-danger fw-bold">
                                     Only Few Seats Left
                                 </span>
                             </div>
-                            <button class="btn book-btn" [routerLink]="['/trek-details', event.eventname]">
+                            <button class="btn book-btn" [routerLink]="['/trek-details', event._id]">
                                 Book Now
                             </button>
                         </div>

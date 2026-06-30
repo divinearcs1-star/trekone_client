@@ -76,9 +76,8 @@
                     </small>
                 </div>
 
-                <div class="form-field">
+                <!-- <div class="form-field">
                     <label appAstrict>Trek Date</label>
-                    <!-- <input type="date" class="form-control" [min]="today" formControlName="trekdate"> -->
                     <select class="form-select form-control" formControlName="trekdate">
                         <option value="">Select Date</option>
                         <option *ngFor="let date of eventdatearray" [value]="date">
@@ -89,7 +88,8 @@
                     MForm.get('trekdate')?.touched)">
                         Trek Date is required
                     </div>
-                </div>
+                </div> -->
+
                 <div class="person-box">
                     <label appAstrict>No. of Persons</label>
                     <div class="person-counter">

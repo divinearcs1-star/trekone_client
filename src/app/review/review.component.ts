@@ -20,44 +20,50 @@ export class ReviewComponent implements OnInit {
   }
 
   payment() {
-
-    this.bookingservice.createOrder(this.bookingData).subscribe((order: any) => {
-      console.log("order =>", order);
-      const options: any = {
-         key: environment.razorpayKey,
-        amount: order.amount,
-        currency: order.currency,
-        name: 'TrekOne Booking',
-        description: 'TrekOne Registration',
-        order_id: order.id,
-        prefill: {
-          name: this.bookingData.customername,
-          email: this.bookingData.email,
-          contact: this.bookingData.mobile
-        },
-        theme: {
-          color: '#3395ff'
-        },
-        handler: (response: any) => {
-          console.log(response);
-          this.bookingservice.getverifysignature(response).subscribe((response: any) => {
+    this.bookingservice.createOrder(this.bookingData).subscribe({
+      next: (order: any) => {
+        console.log("order =>", order);
+        const options: any = {
+          key: environment.razorpayKey,
+          amount: order.amount,
+          currency: order.currency,
+          name: 'TrekOne Booking',
+          description: 'TrekOne Registration',
+          order_id: order.id,
+          prefill: {
+            name: this.bookingData.customername,
+            email: this.bookingData.email,
+            contact: this.bookingData.mobile
+          },
+          theme: {
+            color: '#3395ff'
+          },
+          handler: (response: any) => {
             console.log(response);
-            this.toastr.success('Payment successful');
-            this.bookingData.bookingid = order.bookingid;
-            sessionStorage.setItem('bookingData', JSON.stringify(this.bookingData));
-            this.router.navigate(['/greeting']);
-          }, err => {
-            console.log(err);
-            this.toastr.error('Payment verification failed');
-          });
-        }
-      };
-      const rzp = new (window as any).Razorpay(options);
-      rzp.open();
-      rzp.on('payment.failed', (response: any) => {
-        console.log('Payment Failed:', response);
-        this.toastr.error(response.error.description);
-      });
+            this.bookingservice.getverifysignature(response).subscribe((response: any) => {
+              console.log(response);
+              this.toastr.success('Payment successful');
+              this.bookingData.bookingid = order.bookingid;
+              sessionStorage.setItem('bookingData', JSON.stringify(this.bookingData));
+              this.router.navigate(['/greeting']);
+            }, err => {
+              console.log(err);
+              this.toastr.error('Payment verification failed');
+            });
+          }
+        };
+        const rzp = new (window as any).Razorpay(options);
+        rzp.open();
+        rzp.on('payment.failed', (response: any) => {
+          console.log('Payment Failed:', response);
+          this.toastr.error(response.error.description);
+        });
+      },
+      error: (err) => {
+        console.log("Full error:", err);
+        console.log("Server message:", err.error.message);
+        this.toastr.error(err.error.message);
+      }
     });
   }
 }

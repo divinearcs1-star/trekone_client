@@ -21,16 +21,8 @@ export class SpecialEventsComponent {
         // filter only premium events
         this.events = data.filter((event: any) => event.specialEvent === true
         );
-        const today = new Date().toISOString().split('T')[0];
-        this.allevents = this.events.map((event: any) => ({
-          ...event,
-          eventdate: event.eventdate
-            .filter((date: string) => date >= today)
-            .sort(
-              (a: string, b: string) =>
-                new Date(a).getTime() - new Date(b).getTime()
-            )
-        }));
+        // const today = new Date().toISOString().split('T')[0];
+        this.allevents = this.events;
       }
     );
 

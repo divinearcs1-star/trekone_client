@@ -61,6 +61,18 @@ export class AdminService {
     );
   }
 
+  approveRefundRequests(bookid : any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/approve-refund`,{bookingid : bookid}
+    );
+  }
+
+  rejectRefundRequests(bookid: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/reject-refund`,{bookingid : bookid}
+    );
+  }
+
   getAllUsers() {
     return this.http.get(
       `${this.baseUrl}/users`
@@ -93,12 +105,4 @@ export class AdminService {
       {}
     );
   }
-
-  updateSeats(id: string, data: any) {
-    return this.http.put(
-      `${this.baseUrl}/update-seats/${id}`,
-      data
-    );
-  }
-
 }

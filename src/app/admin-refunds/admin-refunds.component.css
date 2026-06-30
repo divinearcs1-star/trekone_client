@@ -22,3 +22,33 @@ th {
     background: #111827;
     color: white;
 }
+
+
+button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+button:first-child {
+    background: #2563eb;
+    color: white;
+}
+
+button:first-child:hover {
+    transform: translateY(-2px);
+}
+
+button:last-child {
+    background: #ef4444;
+    color: white;
+}
+
+button:last-child:hover {
+    transform: translateY(-2px);
+}

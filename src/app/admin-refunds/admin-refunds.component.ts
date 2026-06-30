@@ -10,6 +10,7 @@ export class AdminRefundsComponent {
 
   refunds: any[] = [];
   loading = true;
+  response:any  = []
 
   constructor(private adminService: AdminService) { }
 
@@ -28,5 +29,29 @@ export class AdminRefundsComponent {
         this.loading = false;
       }
     });
+  }
+
+  approveRefund(bookid: string) {
+    this.adminService.approveRefundRequests(bookid).subscribe({
+      next: (res: any) => {
+        this.response = res;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+
+  }
+  rejectRefund(bookid: string) {
+    console.log("bookid", bookid);
+    this.adminService.rejectRefundRequests(bookid).subscribe({
+      next: (res: any) => {
+        this.response = res;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+
   }
 }

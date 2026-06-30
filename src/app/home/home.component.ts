@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.showTopButton = window.scrollY > 1000;
+    this.showTopButton = window.scrollY > 1200;
   }
   constructor(private service: EventService, private router: Router) {
   }
@@ -55,15 +55,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.filteredEvents = [...this.events];
 
         const today = new Date().toISOString().split('T')[0];
-        this.allevents = this.events.map((event: any) => ({
-          ...event,
-          eventdate: event.eventdate
-            .filter((date: string) => date >= today)
-            .sort(
-              (a: string, b: string) =>
-                new Date(a).getTime() - new Date(b).getTime()
-            )
-        }));
+        this.allevents = this.events;
+        // console.log(this.allevents[0].batches[0])
 
         this.startCountdown();
       },
@@ -126,21 +119,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
   startCountdown() {
-    const minIndex = this.allevents.reduce(
-      (minIdx: number, event: any, currentIdx: number) => {
-        const smallestDate = event.eventdate.sort()[0];
+  let minIndex = 0;
+  for (let i = 1; i < this.allevents.length; i++) {
+    const currentDate = new Date(this.allevents[i].batches[0].eventDate);
+    const minDate = new Date(this.allevents[minIndex].batches[0].eventDate);
+    if (currentDate < minDate) {
+      minIndex = i;
+    }
+  }
+    console.log(minIndex);
 
-        return smallestDate < this.allevents[minIdx].eventdate.sort()[0]
-          ? currentIdx
-          : minIdx;
-      },
-      0
-    );
-    // console.log(minIndex);
-
-    // console.log(new Date(this.allevents[minIndex].eventdate.sort()[0]));
-    if (this.events.length) {
-      const trekDate = new Date(this.allevents[minIndex].eventdate.sort()[0]);
+    if (this.allevents.length) {
+      const trekDate = new Date(this.allevents[minIndex].batches[0].eventDate);
+      
       this.intervalId = setInterval(() => {
         const now = new Date().getTime();
         const distance = trekDate.getTime() - now;
@@ -239,3 +230,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 }
+function getNearestEventIndex() {
+  throw new Error('Function not implemented.');
+}
+

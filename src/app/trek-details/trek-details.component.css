@@ -183,3 +183,26 @@
     align-items: center;      /* Vertical center */
     justify-content: center;
 }
+
+.batch-select {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border: 2px solid #198754;
+    border-radius: 12px;
+    background: #f8fcf9;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.batch-select:hover {
+    border-color: #157347;
+}
+
+.batch-select:focus {
+    box-shadow: 0 0 0 4px rgba(25,135,84,0.15);
+}

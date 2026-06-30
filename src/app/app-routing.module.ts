@@ -51,7 +51,7 @@ const routes: Routes = [
     canActivate: [adminGuard]
   },
   {
-    path: 'admin/edit-trek/:id/:type',
+    path: 'admin/edit-trek/:id',
     component: AddTrekComponent
     ,canActivate: [adminGuard]
   },
@@ -76,11 +76,11 @@ const routes: Routes = [
    ,canActivate: [adminGuard]
 },
   { path: 'login', component: LoginComponent },
-  { path: 'admission/:name/:id/:fees/:bookdate/:pickup', component: AdmissionComponent },
+  { path: 'admission/:name/:id/:fees/:eventDate/:batchId/:pickup', component: AdmissionComponent },
   { path: 'greeting', component: GreetingComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'trek-details/:eventname', component: TrekDetailsComponent },
-  { path: 'premium-details/:eventname', component: PremiumDetailsComponent },
+  { path: 'trek-details/:id', component: TrekDetailsComponent },
+  { path: 'premium-details/:id', component: PremiumDetailsComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'search-treks', component: SearchTreksComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },

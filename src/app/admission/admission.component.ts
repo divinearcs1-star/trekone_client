@@ -14,9 +14,10 @@ export class AdmissionComponent implements OnInit {
 
   submitted = false;
   eventname = ""
+  eventDate = ""
+  batchId=""
   _id = ""
   fees = ""
-  eventdatearray: string []=[]
   pickuparray: string []=[]
   bookingData: any = ""
 
@@ -33,16 +34,16 @@ export class AdmissionComponent implements OnInit {
       this.eventname = params.get('name') || '';
       this._id = params.get('id') || '';
       this.fees = params.get('fees') || '';
-      this.eventdatearray = (params.get('bookdate') || '').split(',');
+      this.eventDate = (params.get('eventDate') || '');
+      this.batchId = (params.get('batchId') || '');
       this.pickuparray = (params.get('pickup') || '').split(',');
       this.MForm.patchValue({
-      trekdate: ''
+      // trekdate: ''
     });
     this.MForm.patchValue({
       pickuplocation: ''
     });
 
-      // console.log("aray"+ this.eventdatearray);
       this.updateAmount();
     });
   }
@@ -63,7 +64,7 @@ export class AdmissionComponent implements OnInit {
         terms: [false, [Validators.required, Validators.requiredTrue]],
         city: ['', [Validators.required, Validators.pattern('^[a-zA-Z- ]+$'), Validators.minLength(4)]],
         pickuplocation: ['', [Validators.required]],
-        trekdate: ['', [Validators.required]],
+        // trekdate: ['', [Validators.required]],
         noofperson: ['1', [Validators.required, Validators.min(1), Validators.max(10)]],
         amount: ['0', []]
       }
@@ -76,6 +77,7 @@ export class AdmissionComponent implements OnInit {
   address = ""
 
   setData() {
+    this.eventDate = new Date(this.eventDate).toISOString().split('T')[0];
     this.bookingData = {
       eventname: this.eventname,
       eventfee: this.fees,
@@ -84,7 +86,8 @@ export class AdmissionComponent implements OnInit {
       email: this.MForm.get('email')?.value,
       noofpersons: this.MForm.get('noofperson')?.value,
       amount: this.MForm.get('amount')?.value,
-      eventdate: this.MForm.get('trekdate')?.value,
+      eventdate: this.eventDate,
+      batchCode: this.batchId,
 
       emergencymobile: this.MForm.get('phone2')?.value,
       address: this.MForm.get('address')?.value,

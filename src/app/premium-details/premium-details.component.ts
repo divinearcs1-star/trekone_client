@@ -15,27 +15,31 @@ export class PremiumDetailsComponent {
   trekImages: string[] = [];
   currentImageIndex = 0;
   sliderInterval: any;
-  validDates: string[] = [];
 
-  constructor(private route: ActivatedRoute, private service: EventService, private router: Router,private toastr: ToastrService) {
+  selectedBatch: any;
+  sortedEvent: any;
+
+  constructor(private route: ActivatedRoute, private service: EventService, private router: Router, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const eventname = this.route.snapshot.paramMap.get('eventname');
+    const eventId = this.route.snapshot.paramMap.get('id');
     this.service.getEvents().subscribe((data: any) => {
-      this.event = data.find((x: any) => x.eventname === eventname);
+      this.event = data.find((x: any) => x._id === eventId);
 
-      // console.log('event =>', this.event);
+       console.log('event =>', this.event);
       this.trek = this.event;
       this.trekImages = this.event.images || [];
-      console.log('trekImages =>', this.trekImages);
+      // console.log('trekImages =>', this.trekImages);
       if (this.trekImages.length > 1) {
         this.startSlider();
       }
-      this.validDates = this.getValidSortedDates(this.event.eventdate);
-      // console.log('route eventname =>', eventname);
+      this.sortedEvent = this.filterAndSortBatches(this.event);
+      if (this.event.batches.length > 0) {
+        this.selectedBatch = this.event.batches[0];
+      }
     });
   }
 
@@ -52,30 +56,32 @@ export class PremiumDetailsComponent {
     }, 5000);
   }
 
-  getValidSortedDates(dates: string[]): string[] {
+  filterAndSortBatches(event: any) {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const validDates = dates
-      .filter(date => {
-        const d = new Date(date);
-        d.setHours(0, 0, 0, 0);
-        return d >= today;
+
+    event.batches = event.batches
+      .filter((batch: any) => {
+        return new Date(batch.eventDate) >= today;
       })
-      .sort((a, b) => {
-        return new Date(a).getTime() - new Date(b).getTime();
+      .sort((a: any, b: any) => {
+        return new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime();
       });
-    return validDates.length > 0 ? validDates : ['Not available'];
+    return event;
   }
 
   booknow() {
     console.log("Inside booknow");
-    if (this.validDates[0] === 'Not available') {
+    console.log("selectedBatch: ", this.selectedBatch?.fees)
+    console.log("selectedBatch: ", this.selectedBatch?.eventDate)
+    console.log("selectedBatch: ", this.selectedBatch?.batchId)
+    if (!this.sortedEvent?.batches?.length) {
       console.log("No Upcoming Dates'");
       this.toastr.error("No Upcoming Dates");
     } else {
       this.toastr.success("Bookings are Open");
       this.router.navigate([
-        '/admission', this.event.eventname,this.event._id, this.event.fees, this.validDates.join(','), this.event.picklocation.join(',')
+        '/admission', this.event.eventname, this.event._id, this.selectedBatch?.fees, this.selectedBatch?.eventDate, this.selectedBatch?.batchId, this.event.pickupLocation.join(',')
       ]);
     }
   }

@@ -18,7 +18,7 @@ export class EventsComponent {
       res => {
         this.events = res
         this.allevents = this.events
-        // console.log("aray" , this.allevents[0].eventdate)
+        // console.log("aray" , this.allevents[0].eventDate)
         this.loading = false;
       },
       err => (console.log(err))

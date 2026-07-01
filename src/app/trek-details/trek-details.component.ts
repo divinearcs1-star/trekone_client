@@ -83,7 +83,7 @@ export class TrekDetailsComponent implements OnInit {
     } else {
       this.toastr.success("Bookings are Open");
       this.router.navigate([
-        '/admission', this.event.eventname, this.event._id,this.selectedBatch?.fees, this.selectedBatch?.eventDate,this.selectedBatch?.batchId, this.event.pickupLocation.join(',')
+        '/admission', this.event.eventName, this.event._id,this.selectedBatch?.fees, this.selectedBatch?.eventDate,this.selectedBatch?.batchId, this.event.pickupLocation.join(',')
       ]);
     }
   }

@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       return;
     }
     this.filteredEvents = this.events.filter((event: any) =>
-      event.eventname?.toLowerCase().includes(search));
+      event.eventName?.toLowerCase().includes(search));
   }
   // to clear search box
   clearSearch(): void {
@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.filteredEvents = [...this.events];
     this.router.navigate([
       '/trek-details',
-      trek.eventname
+      trek._id
     ]);
   }
   exploreTreks(inputvalue: string): void {

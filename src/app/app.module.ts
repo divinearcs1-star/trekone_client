@@ -40,6 +40,7 @@ import { AdminTreksComponent } from './admin-treks/admin-treks.component';
 import { AddTrekComponent } from './add-trek/add-trek.component';
 import { AdminRefundsComponent } from './admin-refunds/admin-refunds.component';
 import { AdminPaymentsComponent } from './admin-payments/admin-payments.component';
+import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { AdminPaymentsComponent } from './admin-payments/admin-payments.componen
     AdminUsersComponent,
     AdminTreksComponent,
     AdminRefundsComponent,
-    AdminPaymentsComponent
+    AdminPaymentsComponent,
+    AdminReportsComponent
   ],
   imports: [
     BrowserModule,

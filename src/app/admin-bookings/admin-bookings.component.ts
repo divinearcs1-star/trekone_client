@@ -41,13 +41,13 @@ export class AdminBookingsComponent {
     this.filteredBookings = this.bookings.filter((booking) => {
       const matchesSearch =
         (booking.email || '').toLowerCase().includes(search) ||
-        (booking.bookingid || '').toLowerCase().includes(search) ||
-        (booking.eventname || '').toLowerCase().includes(search);
+        (booking.bookingId || '').toLowerCase().includes(search) ||
+        (booking.eventName || '').toLowerCase().includes(search);
 
       const matchesStatus =
         !this.statusFilter ||
-        booking.paymentstatus?.toLowerCase() === this.statusFilter.toLowerCase() ||
-        booking.bookingstatus?.toLowerCase() === this.statusFilter.toLowerCase();
+        booking.paymentStatus?.toLowerCase() === this.statusFilter.toLowerCase() ||
+        booking.bookingStatus?.toLowerCase() === this.statusFilter.toLowerCase();
 
       return matchesSearch && matchesStatus;
     });

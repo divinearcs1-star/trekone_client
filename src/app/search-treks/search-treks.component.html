@@ -38,12 +38,12 @@
                 </div>
                 <div class="trek-body">
                     <h4>
-                        {{event.eventname}}
+                        {{event.eventName}}
                     </h4>
                     <p>
                         Starts from ₹{{event.fees}}
                     </p>
-                    <button class="btn view-btn" [routerLink]="['/trek-details', event.eventname]">
+                    <button class="btn view-btn" [routerLink]="['/trek-details', event._id]">
                         View Details
                     </button>
                 </div>

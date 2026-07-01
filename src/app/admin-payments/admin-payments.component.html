@@ -21,14 +21,14 @@
 
             <tr *ngFor="let payment of payments">
 
-                <td>{{ payment.bookingid }}</td>
+                <td>{{ payment.bookingId }}</td>
                 <td>{{ payment.orderid }}</td>
-                <td>{{ payment.paymentid }}</td>
+                <td>{{ payment.paymentId }}</td>
                 <td>{{ payment.email }}</td>
                 <td>₹{{ payment.amount }}</td>
-                <td>{{ payment.paymentstatus }}</td>
-                <td>{{ payment.refundstatus || 'N/A' }}</td>
-                <td>{{ payment.paymentdate | date:'medium' }}</td>
+                <td>{{ payment.paymentStatus }}</td>
+                <td>{{ payment.refundStatus || 'N/A' }}</td>
+                <td>{{ payment.paymentDate | date:'medium' }}</td>
 
             </tr>
 

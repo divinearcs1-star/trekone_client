@@ -13,7 +13,7 @@ export class RegisterComponent {
 
   showPassword: boolean = false;
   submitted = false;
-  eventname = ""
+  eventName = ""
   response = ""
 
   email = ""
@@ -39,8 +39,8 @@ export class RegisterComponent {
   ngOnInit(): void {
     //  this.route.paramMap.subscribe(params => {
 
-    // this.eventname = String (params.get('name'));
-    // console.log(this.eventname);
+    // this.eventName = String (params.get('name'));
+    // console.log(this.eventName);
     // });
   }
 

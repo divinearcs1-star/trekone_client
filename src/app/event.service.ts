@@ -32,8 +32,8 @@ export class EventService {
     return this.http.get<any>(this.bookingsUrl);
   }
 
-  cancelRefund(bookingid: any) {
-    return this.http.post<any>(this.cancelRefundUrl, { bookingid });
+  cancelRefund(bookingId: any) {
+    return this.http.post<any>(this.cancelRefundUrl, { bookingId });
   }
 
   getAllBookings() {

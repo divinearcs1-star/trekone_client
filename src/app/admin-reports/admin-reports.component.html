@@ -1,0 +1,85 @@
+<div class="reports-page">
+    <!-- Header -->
+    <div class="reports-header">
+        <h1>Reports & Exports</h1>
+        <p>Download bookings, payments, and refunds reports</p>
+    </div>
+    <!-- Filters -->
+    <div class="filters-card">
+        <div class="filter-group">
+            <label>From Date</label>
+            <input type="date" [(ngModel)]="fromDate">
+        </div>
+        <div class="filter-group">
+            <label>To Date</label>
+            <input type="date" [(ngModel)]="toDate">
+        </div>
+        <div class="filter-group">
+            <label>Payment Status</label>
+            <select [(ngModel)]="paymentStatus">
+                <option value="">All</option>
+                <option value="Paid">Paid</option>
+                <option value="Pending">Pending</option>
+                <option value="Refunded">Refunded</option>
+                <option value="Refund Initiated">Refund Initiated</option>
+            </select>
+        </div>
+    </div>
+    <!-- Summary Cards -->
+    <div class="summary-grid">
+        <div class="summary-card">
+            <h3>Total Bookings</h3>
+            <p>{{ totalBookings }}</p>
+        </div>
+        <div class="summary-card">
+            <h3>Total Revenue</h3>
+            <p>₹{{ totalRevenue }}</p>
+        </div>
+        <div class="summary-card">
+            <h3>Total Refund Requests</h3>
+            <p>{{ totalRefunds }}</p>
+        </div>
+    </div>
+    <!-- Report Cards -->
+    <div class="report-grid">
+        <!-- Bookings -->
+        <div class="report-card">
+            <h2>Booking Reports</h2>
+            <p>Export all booking records</p>
+            <div class="button-group">
+                <button class="excel-btn" (click)="exportBookingsExcel()">
+                    Export Excel
+                </button>
+                <button class="pdf-btn" (click)="exportBookingsPDF()">
+                    Export PDF
+                </button>
+            </div>
+        </div>
+        <!-- Payments -->
+        <div class="report-card">
+            <h2>Payment Reports</h2>
+            <p>Export all payment records</p>
+            <div class="button-group">
+                <button class="excel-btn" (click)="exportPaymentsExcel()">
+                    Export Excel
+                </button>
+                <button class="pdf-btn" (click)="exportPaymentsPDF()">
+                    Export PDF
+                </button>
+            </div>
+        </div>
+        <!-- Refunds -->
+        <div class="report-card">
+            <h2>Refund Reports</h2>
+            <p>Export all refund records</p>
+            <div class="button-group">
+                <button class="excel-btn" (click)="exportRefundsExcel()">
+                    Export Excel
+                </button>
+                <button class="pdf-btn" (click)="exportRefundsPDF()">
+                    Export PDF
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

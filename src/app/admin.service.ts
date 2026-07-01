@@ -63,13 +63,13 @@ export class AdminService {
 
   approveRefundRequests(bookid : any) {
     return this.http.post<any>(
-      `${this.baseUrl}/approve-refund`,{bookingid : bookid}
+      `${this.baseUrl}/approve-refund`,{bookingId : bookid}
     );
   }
 
   rejectRefundRequests(bookid: any) {
     return this.http.post<any>(
-      `${this.baseUrl}/reject-refund`,{bookingid : bookid}
+      `${this.baseUrl}/reject-refund`,{bookingId : bookid}
     );
   }
 

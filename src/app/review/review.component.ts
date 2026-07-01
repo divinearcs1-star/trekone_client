@@ -31,7 +31,7 @@ export class ReviewComponent implements OnInit {
           description: 'TrekOne Registration',
           order_id: order.id,
           prefill: {
-            name: this.bookingData.customername,
+            name: this.bookingData.customerName,
             email: this.bookingData.email,
             contact: this.bookingData.mobile
           },
@@ -43,7 +43,7 @@ export class ReviewComponent implements OnInit {
             this.bookingservice.getverifysignature(response).subscribe((response: any) => {
               console.log(response);
               this.toastr.success('Payment successful');
-              this.bookingData.bookingid = order.bookingid;
+              this.bookingData.bookingId = order.bookingId;
               sessionStorage.setItem('bookingData', JSON.stringify(this.bookingData));
               this.router.navigate(['/greeting']);
             }, err => {

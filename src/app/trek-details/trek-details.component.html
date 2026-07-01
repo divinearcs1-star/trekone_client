@@ -6,14 +6,14 @@
                 ⛰️ {{ trek.altitude }}
             </span>
             <h1 class="trek-title">
-                {{ trek.eventname }}
+                {{ trek.eventName }}
             </h1>
             <div class="containercls">
-                <h3 *ngIf="event.subtitlevisible" style="color: white; margin-left: 475px;">
+                <h3 *ngIf="event.subtitleVisible" style="color: white; margin-left: 475px;">
                     {{trek.eventTag}}
                 </h3>
             </div>
-            <p *ngIf="event.subtitlevisible" style="font-size:x-large; transform: translateY(-50px);">
+            <p *ngIf="event.subtitleVisible" style="font-size:x-large; transform: translateY(-50px);">
                 {{trek.eventTagline}}
             </p>
         </div>

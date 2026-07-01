@@ -31,7 +31,7 @@ export class SearchTreksComponent implements OnInit {
       } else {
         const search = this.searchText.toLowerCase();
         this.filteredEvents = this.events.filter((event: any) =>
-          event.eventname?.toLowerCase().includes(search)
+          event.eventName?.toLowerCase().includes(search)
         );
         this.loading = false;
       }
@@ -51,7 +51,7 @@ export class SearchTreksComponent implements OnInit {
     }
     this.filteredEvents = this.originalEvents.filter(
       (event: any) =>
-        event.eventname
+        event.eventName
           ?.toLowerCase()
           .includes(search)
         ||

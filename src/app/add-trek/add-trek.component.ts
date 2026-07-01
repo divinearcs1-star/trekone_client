@@ -17,7 +17,7 @@ export class AddTrekComponent {
   ) { }
 
   trekData: any = {
-    eventname: '',
+    eventName: '',
     description: '',
     eventTag: '',
     eventTagline: '',
@@ -55,7 +55,7 @@ export class AddTrekComponent {
     trekFrom: '',
     trekRoute: '',
     popular: false,
-    subtitlevisible: false,
+    subtitleVisible: false,
     specialEvent: false,
     status: 'Active',
     batches: []
@@ -133,8 +133,8 @@ export class AddTrekComponent {
   addBatch() {
     const batchNo = this.trekData.batches.length + 1;
 
-    const trekName = this.trekData.eventname
-      ? this.trekData.eventname.split(' ')[0]
+    const trekName = this.trekData.eventName
+      ? this.trekData.eventName.split(' ')[0]
       : 'TREK';
 
     this.trekData.batches.push({
@@ -151,8 +151,8 @@ export class AddTrekComponent {
   }
 
   updateBatchId(batch: any, index: number) {
-    const trekName = this.trekData.eventname
-      ? this.trekData.eventname.split(' ')[0]
+    const trekName = this.trekData.eventName
+      ? this.trekData.eventName.split(' ')[0]
       : 'TREK';
 
     const formattedDate = batch.eventDate

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { __values } from 'tslib';
-import { BookingService } from '../booking.service';
-import { ToastrService } from 'ngx-toastr';
+// import { BookingService } from '../booking.service';
+// import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admission',
@@ -14,14 +14,14 @@ export class AdmissionComponent implements OnInit {
 
   submitted = false;
   eventname = ""
-  eventDate = ""
-  batchId=""
+  eventdate = ""
+  batchid=""
   _id = ""
   fees = ""
   pickuparray: string []=[]
   bookingData: any = ""
 
-  numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,17,18,19,20];
   today: string = new Date().toISOString().split('T')[0];
 
   // Inject FormBuilder service
@@ -34,14 +34,14 @@ export class AdmissionComponent implements OnInit {
       this.eventname = params.get('name') || '';
       this._id = params.get('id') || '';
       this.fees = params.get('fees') || '';
-      this.eventDate = (params.get('eventDate') || '');
-      this.batchId = (params.get('batchId') || '');
+      this.eventdate = (params.get('eventDate') || '');
+      this.batchid = (params.get('batchId') || '');
       this.pickuparray = (params.get('pickup') || '').split(',');
       this.MForm.patchValue({
       // trekdate: ''
     });
     this.MForm.patchValue({
-      pickuplocation: ''
+      pickupLocation: ''
     });
 
       this.updateAmount();
@@ -63,7 +63,7 @@ export class AdmissionComponent implements OnInit {
         address: ['', [Validators.required, Validators.minLength(5)]],
         terms: [false, [Validators.required, Validators.requiredTrue]],
         city: ['', [Validators.required, Validators.pattern('^[a-zA-Z- ]+$'), Validators.minLength(4)]],
-        pickuplocation: ['', [Validators.required]],
+        pickupLocation: ['', [Validators.required]],
         // trekdate: ['', [Validators.required]],
         noofperson: ['1', [Validators.required, Validators.min(1), Validators.max(10)]],
         amount: ['0', []]
@@ -77,23 +77,23 @@ export class AdmissionComponent implements OnInit {
   address = ""
 
   setData() {
-    this.eventDate = new Date(this.eventDate).toISOString().split('T')[0];
+    this.eventdate = new Date(this.eventdate).toISOString().split('T')[0];
     this.bookingData = {
-      eventname: this.eventname,
-      eventfee: this.fees,
-      customername: this.MForm.get('fname')?.value,
+      eventName: this.eventname,
+      eventFee: this.fees,
+      customerName: this.MForm.get('fname')?.value,
       mobile: this.MForm.get('phone')?.value,
       email: this.MForm.get('email')?.value,
-      noofpersons: this.MForm.get('noofperson')?.value,
+      noOfPersons: this.MForm.get('noofperson')?.value,
       amount: this.MForm.get('amount')?.value,
-      eventdate: this.eventDate,
-      batchCode: this.batchId,
+      eventDate: this.eventdate,
+      batchCode: this.batchid,
 
-      emergencymobile: this.MForm.get('phone2')?.value,
+      emergencyMobile: this.MForm.get('phone2')?.value,
       address: this.MForm.get('address')?.value,
       terms: this.MForm.get('terms')?.value,
       city: this.MForm.get('city')?.value,
-      pickuplocation: this.MForm.get('pickuplocation')?.value,
+      pickupLocation: this.MForm.get('pickupLocation')?.value,
       trekId : this._id
     }
 

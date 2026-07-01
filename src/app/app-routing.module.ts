@@ -25,6 +25,7 @@ import { AddTrekComponent } from './add-trek/add-trek.component';
 import { AdminRefundsComponent } from './admin-refunds/admin-refunds.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminPaymentsComponent } from './admin-payments/admin-payments.component';
+import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 
 const routes: Routes = [
   //  {path : '', redirectTo:'events', pathMatch:'full'},
@@ -87,6 +88,7 @@ const routes: Routes = [
   { path: 'reset-password/:token', component: ResetPasswordComponent },
   { path: 'terms-and-conditions', component: TermsComponent },
   { path: 'mybooking', component: MybookingComponent },
+  { path: 'admin/reports', component: AdminReportsComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 

@@ -16,22 +16,24 @@
                 <th>Trek Date</th>
                 <th>Amount</th>
                 <th>Email</th>
+                <th>Request Date</th>
                 <th>Actions</th>
-            </tr>
+            </tr> 
         </thead>
         <tbody>
             <tr *ngFor="let refund of refunds">
-                <td>{{ refund.bookingid }}</td>
-                <td>{{ refund.customername }}</td>
-                <td>{{ refund.eventname }}</td>
-                <td>{{ refund.eventdate |date:'dd-MMM-yyyy' }}</td>
+                <td>{{ refund.bookingId }}</td>
+                <td>{{ refund.customerName }}</td>
+                <td>{{ refund.eventName }}</td>
+                <td>{{ refund.eventDate |date:'dd-MMM-yyyy' }}</td>
                 <td>₹{{ refund.amount }}</td>
                 <td>{{ refund.email }}</td>
+                <td>{{ refund.refundRequestedAt |date:'dd-MMM-yyyy' }}</td>
                 <td>
-                    <button (click)="approveRefund(refund.bookingid)">
+                    <button (click)="approveRefund(refund.bookingId)">
                         Approve Refund
                     </button>
-                    <button  (click)="rejectRefund(refund.bookingid)">
+                    <button  (click)="rejectRefund(refund.bookingId)">
                         Reject Refund
                     </button>
                 </td>

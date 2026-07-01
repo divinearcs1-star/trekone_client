@@ -10,7 +10,7 @@
         <div class="trek-card" *ngFor="let trek of treks">
             <img [src]="trek.coverImage" alt="trek">
             <div class="trek-content">
-                <h2>{{trek.eventname}}</h2>
+                <h2>{{trek.eventName}}</h2>
                 <div class="info">
                     <span>{{trek.duration}}</span>
                     <span>{{trek.difficulty}}</span>
@@ -43,7 +43,7 @@
     <div class="seat-modal" *ngIf="selectedTrek">
         <div class="seat-box">
             <h2>Manage Batch Seats</h2>
-            <p>{{ selectedTrek.eventname }}</p>
+            <p>{{ selectedTrek.eventName }}</p>
             <div *ngFor="let batch of selectedTrek.batches" class="batch-box">
                 <h4>{{ batch.batchId }}</h4>
                 <label>Total Seats</label>

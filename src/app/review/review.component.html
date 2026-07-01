@@ -5,19 +5,19 @@
         <h4>Review Your Booking</h4>
         <div class="info-row">
             <span>Trek Name</span>
-            <strong>{{bookingData.eventname}}</strong>
+            <strong>{{bookingData.eventName}}</strong>
         </div>
         <div class="info-row">
             <span>Trek Date</span>
-            <strong>{{bookingData.eventdate}}</strong>
+            <strong>{{bookingData.eventDate}}</strong>
         </div>
         <div class="info-row">
             <span>No. of Persons</span>
-            <strong>{{bookingData.noofpersons}}</strong>
+            <strong>{{bookingData.noOfPersons}}</strong>
         </div>
         <div class="info-row">
             <span>Booking Name</span>
-            <strong>{{bookingData.customername}}</strong>
+            <strong>{{bookingData.customerName}}</strong>
         </div>
         <div class="info-row">
             <span>Email</span>
@@ -33,7 +33,7 @@
         <h4>Payment Details</h4>
         <div class="info-row">
             <span>Fee Per Person</span>
-            <strong>₹{{bookingData.eventfee}}</strong>
+            <strong>₹{{bookingData.eventFee}}</strong>
         </div>
         <div class="info-row total">
             <span>Total Amount</span>
@@ -48,7 +48,7 @@
                 💳 Pay via Indian Credit Card / Debit Card / Net Banking / UPI
             </span>
             <strong class="razorpay-text">
-                Razorpay
+                {{bookingData.paymentVia}}
             </strong>
         </div>
     </div>

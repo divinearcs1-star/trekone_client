@@ -11,7 +11,7 @@ import autoTable from 'jspdf-autotable';
 })
 export class GreetingComponent {
   username: string = ""
-  eventname = ""
+  eventName = ""
   bookingData: any;
 
   constructor(private route: ActivatedRoute) {
@@ -33,7 +33,7 @@ export class GreetingComponent {
     //   const contentDataURL = canvas.toDataURL('image/png');
     //   const pdf = new jsPDF('p', 'mm', 'a4');
     //   pdf.addImage(contentDataURL, 'PNG', 0, 0, imgWidth, imgHeight);
-    //   pdf.save('TrekOne-Receipt-'+ this.bookingData.bookingid + '.pdf');
+    //   pdf.save('TrekOne-Receipt-'+ this.bookingData.bookingId + '.pdf');
     // });
     // }
 
@@ -47,7 +47,7 @@ export class GreetingComponent {
     // pdf.text('Date: 11 Jul 2026', 20, 70);
     // pdf.text('Amount Paid: ₹2598', 20, 80);
 
-    // pdf.save('TrekOne-Receipt-' + this.bookingData.bookingid + '.pdf');
+    // pdf.save('TrekOne-Receipt-' + this.bookingData.bookingId + '.pdf');
   }
 
   downloadReceipt() {
@@ -70,7 +70,7 @@ export class GreetingComponent {
     pdf.text('Booking ID:', 15, 45);
 
     pdf.setFont('helvetica', 'normal');
-    pdf.text(booking.bookingid, 55, 45);
+    pdf.text(booking.bookingId, 55, 45);
 
     // Table
     autoTable(pdf, {
@@ -78,13 +78,13 @@ export class GreetingComponent {
       theme: 'grid',
       head: [['Field', 'Details']],
       body: [
-        ['Customer Name', booking.customername],
+        ['Customer Name', booking.customerName],
         ['Mobile', booking.mobile],
         ['Email', booking.email],
-        ['Trek Name', booking.eventname],
-        ['Trek Date', booking.eventdate],
-        ['No. of Persons', booking.noofpersons],
-        ['Pick-up Point', booking.pickuplocation],
+        ['Trek Name', booking.eventName],
+        ['Trek Date', booking.eventDate],
+        ['No. of Persons', booking.noOfPersons],
+        ['Pick-up Point', booking.pickupLocation],
         ['Amount Paid', 'Rs. ' + booking.amount]
       ]
     });
@@ -105,6 +105,6 @@ export class GreetingComponent {
       15,
       finalY + 15
     );
-    pdf.save('TrekOne-Booking-Receipt_' + booking.bookingid + '.pdf');
+    pdf.save('TrekOne-Booking-Receipt_' + booking.bookingId + '.pdf');
   }
 }

@@ -62,16 +62,16 @@
                 <div class="form-field pickloc">
                     <label appAstrict>Pickup Location</label>
                     <!-- <input
-                        [class.is-invalid]="MForm.get('pickuplocation')?.invalid && MForm.get('pickuplocation')?.touched"
-                        type="text" class="form-control" formControlName="pickuplocation"> -->
-                    <select class="form-select form-control" formControlName="pickuplocation">
+                        [class.is-invalid]="MForm.get('pickupLocation')?.invalid && MForm.get('pickupLocation')?.touched"
+                        type="text" class="form-control" formControlName="pickupLocation"> -->
+                    <select class="form-select form-control" formControlName="pickupLocation">
                         <option value="">Select Pickup Location</option>
                         <option *ngFor="let pickup of pickuparray" [value]="pickup">
                             {{ pickup }}
                         </option>
                     </select>
-                    <small class="text-danger" *ngIf="MForm.get('pickuplocation')?.hasError('required') && (MForm.get('pickuplocation')?.dirty || 
-                    MForm.get('pickuplocation')?.touched)">
+                    <small class="text-danger" *ngIf="MForm.get('pickupLocation')?.hasError('required') && (MForm.get('pickupLocation')?.dirty || 
+                    MForm.get('pickupLocation')?.touched)">
                         select location
                     </small>
                 </div>
@@ -80,7 +80,7 @@
                     <label appAstrict>Trek Date</label>
                     <select class="form-select form-control" formControlName="trekdate">
                         <option value="">Select Date</option>
-                        <option *ngFor="let date of eventdatearray" [value]="date">
+                        <option *ngFor="let date of eventDatearray" [value]="date">
                             {{ date | date:'dd MMM yyyy' }}
                         </option>
                     </select>

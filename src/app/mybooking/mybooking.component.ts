@@ -40,16 +40,16 @@ export class MybookingComponent implements OnInit {
     });
   }
 
-  cancelBooking(bookingid: string) {
+  cancelBooking(bookingId: string) {
 
-    this.eventService.cancelRefund(bookingid).subscribe({
+    this.eventService.cancelRefund(bookingId).subscribe({
       next: (res: any) => {
         console.log(res);
         const booking = this.bookings.find(
-          x => x.bookingid === bookingid
+          x => x.bookingId === bookingId
         );
         if (booking) {
-          booking.bookingstatus = "Cancelled";
+          booking.bookingStatus = "Cancelled";
         }
         if (res.success == false) {
           this.toastr.warning(res.message);
@@ -68,7 +68,7 @@ export class MybookingComponent implements OnInit {
   downloadReceipt(bid: any) {
     //
     const booking = this.bookings.find(
-      x => x.bookingid === bid
+      x => x.bookingId === bid
     );
     //
     console.log("booking id :", bid);
@@ -90,7 +90,7 @@ export class MybookingComponent implements OnInit {
     pdf.text('Booking ID:', 15, 45);
 
     pdf.setFont('helvetica', 'normal');
-    pdf.text(booking.bookingid, 55, 45);
+    pdf.text(booking.bookingId, 55, 45);
 
     // Table
     autoTable(pdf, {
@@ -98,13 +98,13 @@ export class MybookingComponent implements OnInit {
       theme: 'grid',
       head: [['Field', 'Details']],
       body: [
-        ['Customer Name', booking.customername],
+        ['Customer Name', booking.customerName],
         ['Mobile', booking.mobile],
         ['Email', booking.email],
-        ['Trek Name', booking.eventname],
-        ['Trek Date', booking.eventdate],
-        ['No. of Persons', booking.noofpersons],
-        ['Pick-up Point', booking.pickuplocation],
+        ['Trek Name', booking.eventName],
+        ['Trek Date', booking.eventDate],
+        ['No. of Persons', booking.noOfPersons],
+        ['Pick-up Point', booking.pickupLocation],
         ['Amount Paid', 'Rs. ' + booking.amount]
       ]
     });
@@ -123,7 +123,7 @@ export class MybookingComponent implements OnInit {
       15,
       finalY + 15
     );
-    pdf.save('TrekOne-Booking-Receipt_' + booking.bookingid + '.pdf');
+    pdf.save('TrekOne-Booking-Receipt_' + booking.bookingId + '.pdf');
   }
 
 }

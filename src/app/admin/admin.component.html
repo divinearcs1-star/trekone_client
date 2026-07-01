@@ -12,6 +12,7 @@
             <li routerLink="/admin/users">Users</li>
             <li routerLink="/admin/refunds">Refund Requests</li>
             <li routerLink="/admin/payments" routerLinkActive="active">Payments</li>
+            <li routerLink="/admin/reports" routerLinkActive="active">Reports</li>
         </ul>
     </aside>
     <!-- Main -->
@@ -69,15 +70,15 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let booking of bookings">
-                        <td>{{booking.bookingid}}</td>
-                        <!-- <td>{{booking.bookingdate | date:'dd-MMM-yyyy hh:mm:ss a'}}</td> -->
-                        <td>{{booking.bookingdate | date:'dd-MMM-yyyy hh:mm:ss'}}</td>
-                        <td>{{booking.customername}}</td>
-                        <td>{{booking.eventname}}</td>
-                        <td>{{booking.eventdate}}</td>
+                        <td>{{booking.bookingId}}</td>
+                        <!-- <td>{{booking.bookingDate | date:'dd-MMM-yyyy hh:mm:ss a'}}</td> -->
+                        <td>{{booking.bookingDate | date:'dd-MMM-yyyy hh:mm:ss'}}</td>
+                        <td>{{booking.customerName}}</td>
+                        <td>{{booking.eventName}}</td>
+                        <td>{{booking.eventDate}}</td>
                         <td>₹{{booking.amount}}</td>
                         <td>
-                            <span class="status paid">{{booking.paymentstatus}}</span>
+                            <span class="status paid">{{booking.paymentStatus}}</span>
                         </td>
                     </tr>
                 </tbody>

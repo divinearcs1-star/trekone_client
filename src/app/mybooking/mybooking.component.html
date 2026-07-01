@@ -15,11 +15,11 @@
             <!-- Top -->
             <div class="booking-top">
                 <div>
-                    <h2>{{ booking.eventname }}</h2>
-                    <span class="booking-id">{{ booking.bookingid }}</span>
+                    <h2>{{ booking.eventName }}</h2>
+                    <span class="booking-id">{{ booking.bookingId }}</span>
                 </div>
                 <div class="right-top">
-                    <span class="status">{{ booking.paymentstatus }}</span>
+                    <span class="status">{{ booking.paymentStatus }}</span>
                     <h3>₹{{ booking.amount }}</h3>
                 </div>
             </div>
@@ -27,37 +27,37 @@
             <div class="booking-grid">
                 <div class="info-item">
                     <label>Trek Date</label>
-                    <p>{{ booking.eventdate | date:'mediumDate' }}</p>
+                    <p>{{ booking.eventDate | date:'mediumDate' }}</p>
                 </div>
                 <div class="info-item">
                     <label>Pickup</label>
-                    <p>{{ booking.pickuplocation }}</p>
+                    <p>{{ booking.pickupLocation }}</p>
                 </div>
                 <div class="info-item">
                     <label>Persons</label>
-                    <p>{{ booking.noofpersons }}</p>
+                    <p>{{ booking.noOfPersons }}</p>
                 </div>
                 <div class="info-item">
                     <label>Payment Via</label>
-                    <p>{{ booking.paymentvia }}</p>
+                    <p>{{ booking.paymentVia }}</p>
                 </div>
             </div>
             <!-- Footer -->
             <div class="booking-footer">
                 <div class="footer-left">
-                    <p>Booked on {{ booking.bookingdate | date:'mediumDate' }}</p>
-                    <small>{{ booking.paymentid }}</small>
+                    <p>Booked on {{ booking.bookingDate | date:'mediumDate' }}</p>
+                    <small>{{ booking.paymentId }}</small>
                 </div>
                 <div class="actions">
-                    <button class="download-btn" (click)="downloadReceipt(booking.bookingid)">
+                    <button class="download-btn" (click)="downloadReceipt(booking.bookingId)">
                         Download Receipt
                     </button>
-                    <button class="cancel-btn" (click)="cancelBooking(booking.bookingid)">
+                    <button class="cancel-btn" (click)="cancelBooking(booking.bookingId)">
                         Cancel & Refund
                     </button>
                     <!-- Show final status -->
-                    <!-- <span *ngIf="booking.bookingstatus === 'Cancelled'" class="cancelled-label">
-                        {{ booking.paymentstatus === 'Refunded' ? 'Refunded' : 'Cancelled' }}
+                    <!-- <span *ngIf="booking.bookingStatus === 'Cancelled'" class="cancelled-label">
+                        {{ booking.paymentStatus === 'Refunded' ? 'Refunded' : 'Cancelled' }}
                     </span> -->
                 </div>
             </div>
